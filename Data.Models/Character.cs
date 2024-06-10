@@ -20,6 +20,8 @@
 
         public List<Adventure> Adventures { get; set; } = new List<Adventure>();
 
+        public User Owner { get; set; } = null!;
+
         public bool isPlayerCharacter { get; set; }
 
         public string StatBlock { get; set; } = "N/A";
