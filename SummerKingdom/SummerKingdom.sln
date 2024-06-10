@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{0E224B5C-78CC-4422-BF2B-763A93D8F6A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "..\Data\Data.csproj", "{0E224B5C-78CC-4422-BF2B-763A93D8F6A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Models", "..\Data.Models\Data.Models.csproj", "{888B866A-0EC5-40C5-B9B9-236B759FE309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Models", "..\Data.Models\Data.Models.csproj", "{888B866A-0EC5-40C5-B9B9-236B759FE309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{CBD5D449-3A43-48F7-A7BF-442A57E5ADA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{CBD5D449-3A43-48F7-A7BF-442A57E5ADA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Exceptions", "..\Common.Exceptions\Common.Exceptions.csproj", "{0B62FB37-929A-48A9-BCA0-A38FD7D2E16C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Exceptions", "..\Common.Exceptions\Common.Exceptions.csproj", "{0B62FB37-929A-48A9-BCA0-A38FD7D2E16C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Repositories", "..\Data.Repositories\Data.Repositories.csproj", "{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Repositories", "..\Data.Repositories\Data.Repositories.csproj", "{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummerKingdom.Web", "SummerKingdom.Web\SummerKingdom.Web.csproj", "{2FCD6156-53D9-42C0-B779-B76A5D2455F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCD6156-53D9-42C0-B779-B76A5D2455F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCD6156-53D9-42C0-B779-B76A5D2455F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCD6156-53D9-42C0-B779-B76A5D2455F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCD6156-53D9-42C0-B779-B76A5D2455F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
