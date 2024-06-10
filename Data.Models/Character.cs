@@ -18,6 +18,8 @@
 
         public List<string> Flaws { get; set; } = new List<string>();
 
+        public bool isPlayerCharacter { get; set; }
+
         public string StatBlock { get; set; } = "N/A";
     }
 }
