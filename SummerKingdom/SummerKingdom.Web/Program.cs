@@ -19,11 +19,8 @@ namespace SummerKingdom.Web
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
-                //Alexander's connection string:
-                //string connectionString = @"Server=DESKTOP-RBKNIJ9\SQLEXPRESS;Database=AceAttitude;Trusted_Connection=True;";
 
-                //Alexei's connection string:
-                string connectionString = @"Server=DESKTOP-C2DTSUG\SQLEXPRESS;Database=AceAttitude;Trusted_Connection=True;";
+                string connectionString = @"Server=DESKTOP-C2DTSUG\SQLEXPRESS;Database=SummerKingdom;Trusted_Connection=True;";
 
                 options.UseSqlServer(connectionString);
                 options.EnableSensitiveDataLogging();
