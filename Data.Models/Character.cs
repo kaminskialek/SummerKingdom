@@ -22,7 +22,7 @@
 
         public User Owner { get; set; } = null!;
 
-        public bool isPlayerCharacter { get; set; }
+        public bool IsPlayerCharacter { get; set; }
 
         public string StatBlock { get; set; } = "N/A";
     }
