@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    public class PlayerCharacter
+    public class PlayerCharacter : IsDeletable
     {
         [Required, Key]
         public int Id { get; set; }
@@ -19,5 +19,7 @@ namespace Data.Models
         public User Owner { get; set; } = null!;
 
         public string CharacterSheet { get; set; } = null!;
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

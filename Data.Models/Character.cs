@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Character
+    public class Character : IsDeletable
     {
         [Required, Key]
         public int Id { get; set; }
@@ -23,6 +23,6 @@ namespace Data.Models
 
         public List<string> Flaws { get; set; } = new List<string>();
 
-
+        public DateTime? DeletedOn { get; set; }
     }
 }

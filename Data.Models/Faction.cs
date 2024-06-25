@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Faction
+    public class Faction : IsDeletable
     {
         [Required, Key]
         public int Id { get; set; }
@@ -18,5 +18,7 @@ namespace Data.Models
         public List<Faction> Allies { get; set; } = new List<Faction>();
 
         public List<Faction> Opponents { get; set; } = new List<Faction>();
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

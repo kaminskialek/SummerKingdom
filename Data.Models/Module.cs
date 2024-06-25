@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Module
+    public class Module : IsDeletable
     {
         [Required, Key]
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace Data.Models
 
         public List<Adventure> Adventures { get; set; } = new List<Adventure>();
 
-        
+        public DateTime? DeletedOn { get; set; }
 
     }
 }

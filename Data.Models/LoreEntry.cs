@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class LoreEntry
+    public class LoreEntry : IsDeletable
     {
         [Required, Key]
         public int Id { get; set; }
@@ -15,5 +15,7 @@ namespace Data.Models
 
         [Required]
         public User Author { get; set; } = null!;
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

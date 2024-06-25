@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Adventure
+    public class Adventure : IsDeletable
     {
         [Required, Key]
         public string Id { get; set; } = null!;
@@ -15,6 +15,6 @@ namespace Data.Models
         public List<Dungeon> Dungeons { get; set; } = new List<Dungeon>();
 
         public List<CompletedAdventure> CompletedBy { get; set; } = new List<CompletedAdventure>();
-
+        public DateTime? DeletedOn { get; set; }
     }
 }
