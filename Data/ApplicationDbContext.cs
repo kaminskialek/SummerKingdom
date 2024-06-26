@@ -89,13 +89,37 @@ namespace Data
                     Description = "This is the starting module in the series. It spans levels 1-5."
                 },
 
-                                new Module
+                new Module                
                 {
                     Id = 2,
                     Title = "A Wizard's Playthings",
                     Description = "This is the second module in the series. It spans levels 5-9."
                 }
             };
-        } 
+
+            modelBuilder.Entity<Module>().HasData(modules);
+
+            List<Adventure> adventures = new List<Adventure>
+            {
+                new Adventure
+                {
+                    Id = 1,
+                    Title = "Road to Nacre",
+                    Description = "Players must find out about the Baron Stern Brow's daughter, Patience. " +
+                    "They must travel to Nacre in hopes of finding her.",
+                    ModuleId = 1
+                },
+
+                new Adventure
+                {
+                    Id = 2,
+                    Title = "A Wizard's Playthings",
+                    Description = "This is the second module in the series. It spans levels 5-9."
+                }
+            };
+
+            modelBuilder.Entity<Module>().HasData(modules);
+
+        }
     }
 }

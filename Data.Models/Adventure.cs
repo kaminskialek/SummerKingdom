@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -6,8 +7,11 @@ namespace Data.Models
     {
         [Required, Key]
         public int Id { get; set; }
+
+        [Required]
         public string Title { get; set; } = null!;
 
+        [Required, ForeignKey("Module")]
         public int ModuleId { get; set; }
 
         public Module Module { get; set; } = null!;
