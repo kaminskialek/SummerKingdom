@@ -113,12 +113,13 @@ namespace Data
                 new Adventure
                 {
                     Id = 2,
-                    Title = "A Wizard's Playthings",
-                    Description = "This is the second module in the series. It spans levels 5-9."
+                    Title = "The Missing Children",
+                    Description = "Players must help Mayor Sea Foam with recent disappearances of his younger citizens.",
+                    ModuleId = 1
                 }
             };
 
-            modelBuilder.Entity<Module>().HasData(modules);
+            modelBuilder.Entity<Adventure>().HasData(adventures);
 
         }
     }
