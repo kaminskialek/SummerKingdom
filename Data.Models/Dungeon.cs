@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -12,6 +13,11 @@ namespace Data.Models
 
         [Required]
         public string Description { get; set; } = null!;
+
+        [Required, ForeignKey("Adventure")]
+        public int AdventureId;
+
+        public Adventure adventure { get; set; } = null!;
 
         public string Map { get; set; } = "N/A"!;
 

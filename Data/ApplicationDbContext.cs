@@ -121,6 +121,28 @@ namespace Data
 
             modelBuilder.Entity<Adventure>().HasData(adventures);
 
+            List<Dungeon> dungeons = new List<Dungeon>
+            {
+                new Dungeon
+                {
+                    Id = 1,
+                    Title = "Fey Ambush",
+                    Description = "Players must travel to nacre, either between two forests, or by sea. " +
+                    "In either case, they are ambushed by fey creatures on the way there.",
+                    AdventureId = 1
+                },
+
+                new Dungeon
+                {
+                    Id = 2,
+                    Title = "Lover's Cave",
+                    Description = "Players must find the missing people in Lover's cave.",
+                    AdventureId = 2
+                }
+            };
+
+            modelBuilder.Entity<Dungeon>().HasData(dungeons);
+
         }
     }
 }
