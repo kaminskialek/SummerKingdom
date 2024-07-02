@@ -13,7 +13,7 @@ namespace Data.Models
 
         public User Owner { get; set; } = null!;
 
-        public string CharacterSheet { get; set; } = null!;
+        public string CharacterSheet { get; set; } = "N/A";
 
         public DateTime? DeletedOn { get; set; }
     }

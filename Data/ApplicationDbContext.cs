@@ -143,6 +143,23 @@ namespace Data
 
             modelBuilder.Entity<Dungeon>().HasData(dungeons);
 
+            List<Faction> Factions = new List<Faction>
+            {
+                new Faction
+                {
+                    Id = 1,
+                    Name = "Blue Tower",
+                    Description = "This is Xazhadir the Diviner's seat of power."
+                },
+
+                new Faction
+                {
+                    Id= 2,
+                    Name = "Nacre",
+                    Description = "Nacre is a small fishing town where the first module takes place."
+                }
+            };
+
         }
     }
 }
