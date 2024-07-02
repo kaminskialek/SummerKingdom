@@ -143,7 +143,7 @@ namespace Data
 
             modelBuilder.Entity<Dungeon>().HasData(dungeons);
 
-            List<Faction> Factions = new List<Faction>
+            List<Faction> factions = new List<Faction>
             {
                 new Faction
                 {
@@ -159,6 +159,41 @@ namespace Data
                     Description = "Nacre is a small fishing town where the first module takes place."
                 }
             };
+
+            modelBuilder.Entity<Faction>().HasData(factions);
+
+            List<LoreEntry> loreEntries = new List<LoreEntry>
+            {
+                new LoreEntry
+                {
+                    Id = 1,
+                    Title = "Rhyme of Creation",
+                    Content = "Rhyme of Creation\r\n" +
+                    "First comes always Everglow\r\n" +
+                    "Hidden pulse from deep and low\r\n" +
+                    "Second comes Foundation Stone\r\n" +
+                    "This one to be left alone!\r\n" +
+                    "Wolfrose lively, Wolfrose calm\r\n" +
+                    "Shifts and turns in pouch or palm\r\n" +
+                    "Many covet Summercrown\r\n" +
+                    "Wisdom’s gift of high renown \r\n" +
+                    "Living Rainbow – fancy’s roam,\r\n" +
+                    "Fickle as the ocean’s foam\r\n" +
+                    "Sin of the Eternal Book\r\n" +
+                    "Seek it if you dare to look\r\n" +
+                    "Last of Ages sees the Bow\r\n" +
+                    "May it ever Truepath show\r\n"
+                },
+
+                new LoreEntry
+                {
+                    Id= 2,
+                    Title = "Salt, Moss and Anise",
+                    Content = "This is the story of three sisters who all desired eternal life."
+                }
+            };
+
+            modelBuilder.Entity<LoreEntry>().HasData(loreEntries);
 
         }
     }
