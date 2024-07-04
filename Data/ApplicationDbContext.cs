@@ -213,14 +213,16 @@ namespace Data
                     "Sin of the Eternal Book\r\n" +
                     "Seek it if you dare to look\r\n" +
                     "Last of Ages sees the Bow\r\n" +
-                    "May it ever Truepath show\r\n"
+                    "May it ever Truepath show\r\n",
+                    AuthorId = 1
                 },
 
                 new LoreEntry
                 {
                     Id= 2,
                     Title = "Salt, Moss and Anise",
-                    Content = "This is the story of three sisters who all desired eternal life."
+                    Content = "This is the story of three sisters who all desired eternal life.",
+                    AuthorId = 1
                 }
             };
 

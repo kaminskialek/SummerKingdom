@@ -269,15 +269,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "LoreEntries",
-                columns: new[] { "Id", "AuthorId", "Content", "DeletedOn", "Title" },
-                values: new object[,]
-                {
-                    { 1, 0, "Rhyme of Creation\r\nFirst comes always Everglow\r\nHidden pulse from deep and low\r\nSecond comes Foundation Stone\r\nThis one to be left alone!\r\nWolfrose lively, Wolfrose calm\r\nShifts and turns in pouch or palm\r\nMany covet Summercrown\r\nWisdom’s gift of high renown \r\nLiving Rainbow – fancy’s roam,\r\nFickle as the ocean’s foam\r\nSin of the Eternal Book\r\nSeek it if you dare to look\r\nLast of Ages sees the Bow\r\nMay it ever Truepath show\r\n", null, "Rhyme of Creation" },
-                    { 2, 0, "This is the story of three sisters who all desired eternal life.", null, "Salt, Moss and Anise" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Modules",
                 columns: new[] { "Id", "DeletedOn", "Description", "Title" },
                 values: new object[,]
@@ -303,6 +294,15 @@ namespace Data.Migrations
                 {
                     { 1, null, "Players must find out about the Baron Stern Brow's daughter, Patience. They must travel to Nacre in hopes of finding her.", 1, "Road to Nacre" },
                     { 2, null, "Players must help Mayor Sea Foam with recent disappearances of his younger citizens.", 1, "The Missing Children" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "LoreEntries",
+                columns: new[] { "Id", "AuthorId", "Content", "DeletedOn", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, "Rhyme of Creation\r\nFirst comes always Everglow\r\nHidden pulse from deep and low\r\nSecond comes Foundation Stone\r\nThis one to be left alone!\r\nWolfrose lively, Wolfrose calm\r\nShifts and turns in pouch or palm\r\nMany covet Summercrown\r\nWisdom’s gift of high renown \r\nLiving Rainbow – fancy’s roam,\r\nFickle as the ocean’s foam\r\nSin of the Eternal Book\r\nSeek it if you dare to look\r\nLast of Ages sees the Bow\r\nMay it ever Truepath show\r\n", null, "Rhyme of Creation" },
+                    { 2, 1, "This is the story of three sisters who all desired eternal life.", null, "Salt, Moss and Anise" }
                 });
 
             migrationBuilder.InsertData(

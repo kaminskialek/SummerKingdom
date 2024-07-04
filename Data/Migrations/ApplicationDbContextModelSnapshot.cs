@@ -272,14 +272,14 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1,
-                            AuthorId = 0,
+                            AuthorId = 1,
                             Content = "Rhyme of Creation\r\nFirst comes always Everglow\r\nHidden pulse from deep and low\r\nSecond comes Foundation Stone\r\nThis one to be left alone!\r\nWolfrose lively, Wolfrose calm\r\nShifts and turns in pouch or palm\r\nMany covet Summercrown\r\nWisdom’s gift of high renown \r\nLiving Rainbow – fancy’s roam,\r\nFickle as the ocean’s foam\r\nSin of the Eternal Book\r\nSeek it if you dare to look\r\nLast of Ages sees the Bow\r\nMay it ever Truepath show\r\n",
                             Title = "Rhyme of Creation"
                         },
                         new
                         {
                             Id = 2,
-                            AuthorId = 0,
+                            AuthorId = 1,
                             Content = "This is the story of three sisters who all desired eternal life.",
                             Title = "Salt, Moss and Anise"
                         });
