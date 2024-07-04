@@ -23,6 +23,10 @@ namespace Data.Models
 
         public List<string> Flaws { get; set; } = new List<string>();
 
+        public PlayerCharacter? PlayerCharacter { get; set; }   
+
+        public NonPlayerCharacter? NonPlayerCharacter { get; set; } 
+
         public DateTime? DeletedOn { get; set; }
     }
 }

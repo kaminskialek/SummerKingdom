@@ -5,11 +5,10 @@ namespace Data.Models
 {
     public class PlayerCharacter : IsDeletable
     {
-        [Required, Key]
+        [Key, ForeignKey("Character")]
         public int Id { get; set; }
 
-        [Required, ForeignKey("Character")]
-        public int CharacterId { get; set; }
+        public Character Character { get; set; } = null!;   
 
         public User Owner { get; set; } = null!;
 

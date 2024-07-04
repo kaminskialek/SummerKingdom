@@ -34,6 +34,16 @@ namespace Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<PlayerCharacter>()
+                    .HasOne(pc => pc.Character)
+                    .WithOne(c => c.PlayerCharacter)
+                    .HasForeignKey<PlayerCharacter>(pc => pc.Id);
+
+            modelBuilder.Entity<NonPlayerCharacter>()
+                    .HasOne(npc => npc.Character)
+                    .WithOne(c => c.NonPlayerCharacter)
+                    .HasForeignKey<NonPlayerCharacter>(npc => npc.Id);
+
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
@@ -75,21 +85,21 @@ namespace Data
                     UserType = UserType.Player,
                 },
 
-                 
+
             };
 
             modelBuilder.Entity<User>().HasData(users);
 
             List<Module> modules = new List<Module>
             {
-                new Module 
-                { 
+                new Module
+                {
                     Id = 1,
                     Title = "Salt, Moss and Anise",
                     Description = "This is the starting module in the series. It spans levels 1-5."
                 },
 
-                new Module                
+                new Module
                 {
                     Id = 2,
                     Title = "A Wizard's Playthings",
@@ -195,6 +205,40 @@ namespace Data
 
             modelBuilder.Entity<LoreEntry>().HasData(loreEntries);
 
+            List<Character> characters = new List<Character>
+            {
+                new Character
+                {
+                    Id = 1,
+                    Name = "Xazhadir",
+                    Description = "Xazhadir is the arch-mage who occupies the blue tower. " +
+                    "He is the primary quest giver of the second module."
+                },
+
+                new Character
+                {
+                    Id= 2,
+                    Name = "Azlan",
+                    Description = "Azlan is a leonin from Desolation. " +
+                    "He has embarked on a quest seeking to improve the living conditions in his tribe. "
+                }
+
+                                new Character
+                {
+                    Id = 3,
+                    Name = "Mayor Sea Foam",
+                    Description = "Sea Foam is the hot-tempered, but caring and honourable mayor of Nacre."
+                },
+
+                new Character
+                {
+                    Id= 4,
+                    Name = "Lonely Pine on a Desert Hill",
+                    Description = "Pine is a ranger from Desertwatch who is eager to explore the world and its boundaries."
+                }
+            };
+
+            modelBuilder.Entity<Character>().HasData(characters);
         }
     }
 }
