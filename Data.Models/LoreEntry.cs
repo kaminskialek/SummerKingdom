@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -13,7 +14,9 @@ namespace Data.Models
         [Required]
         public string Content { get; set; } = null!;
 
-        [Required]
+        [Required, ForeignKey("User")]
+        public int AuthorId { get; set; }
+
         public User Author { get; set; } = null!;
 
         public DateTime? DeletedOn { get; set; }

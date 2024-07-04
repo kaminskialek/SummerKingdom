@@ -44,6 +44,27 @@ namespace Data
                     .WithOne(c => c.NonPlayerCharacter)
                     .HasForeignKey<NonPlayerCharacter>(npc => npc.Id);
 
+            modelBuilder.Entity<CompletedAdventure>()
+                    .HasKey(ca => new { ca.UserId, ca.AdventureId });
+
+            modelBuilder.Entity<CompletedAdventure>()
+                    .HasOne(ca => ca.User)
+                    .WithMany(u => u.CompletedAdventures)
+                    .HasForeignKey(ca => ca.UserId);
+
+            modelBuilder.Entity<CompletedAdventure>()
+                    .HasOne(ca => ca.Adventure)
+                    .WithMany(a => a.CompletedBy)
+                    .HasForeignKey(ca => ca.AdventureId);
+
+            modelBuilder.Entity<Character>()
+                    .Ignore(c => c.Traits)
+                    .Ignore(c => c.Ideals)
+                    .Ignore(c => c.Bonds)
+                    .Ignore(c => c.Flaws);
+
+            modelBuilder.Entity<Dungeon>().Ignore(d => d.Encounters);
+
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
@@ -288,6 +309,8 @@ namespace Data
                     AdventureId = 1
                 }
             };
+
+            modelBuilder.Entity<CompletedAdventure>().HasData(completedAdventures);
 
         }
     }
