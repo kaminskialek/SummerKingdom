@@ -221,9 +221,9 @@ namespace Data
                     Name = "Azlan",
                     Description = "Azlan is a leonin from Desolation. " +
                     "He has embarked on a quest seeking to improve the living conditions in his tribe. "
-                }
+                },
 
-                                new Character
+                new Character
                 {
                     Id = 3,
                     Name = "Mayor Sea Foam",
