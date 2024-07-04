@@ -233,12 +233,62 @@ namespace Data
                 new Character
                 {
                     Id= 4,
-                    Name = "Lonely Pine on a Desert Hill",
-                    Description = "Pine is a ranger from Desertwatch who is eager to explore the world and its boundaries."
+                    Name = "Blank Canvas",
+                    Description = "Blank Canvas is a half-elf paladin, who has sworn an oath to protect nature, its beauty and its bounty."
                 }
             };
 
             modelBuilder.Entity<Character>().HasData(characters);
+
+            List<NonPlayerCharacter> nonPlayerCharacters = new List<NonPlayerCharacter>
+            {
+                new NonPlayerCharacter
+                {
+                    Id = 1,
+                    FactionId = 1,
+                },
+
+                new NonPlayerCharacter
+                {
+                    Id= 3,
+                    FactionId = 2,
+                }
+            };
+
+            modelBuilder.Entity<NonPlayerCharacter>().HasData(nonPlayerCharacters);
+
+            List<PlayerCharacter> playerCharacters = new List<PlayerCharacter>
+            {
+                new PlayerCharacter
+                {
+                    Id = 2,
+                    OwnerId = 2,
+                },
+
+                new PlayerCharacter
+                {
+                    Id= 4,
+                    OwnerId = 3,
+                }
+            };
+
+            modelBuilder.Entity<PlayerCharacter>().HasData(playerCharacters);
+
+            List<CompletedAdventure> completedAdventures = new List<CompletedAdventure>
+            {
+                new CompletedAdventure
+                {
+                    UserId = 2,
+                    AdventureId = 1
+                },
+
+                new CompletedAdventure
+                {
+                    UserId = 3,
+                    AdventureId = 1
+                }
+            };
+
         }
     }
 }
