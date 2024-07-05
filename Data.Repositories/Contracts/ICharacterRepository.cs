@@ -12,13 +12,13 @@ namespace Data.Repositories.Contracts
 
         public List<PlayerCharacter> GetAllPlayerCharacters();
 
-        public NonPlayerCharacter CreateNonPlayerCharacter(NonPlayerCharacter nonPlayerCharacter);
+        public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter);
 
-        public NonPlayerCharacter UpdateNonPlayerCharacter(NonPlayerCharacter nonPlayerCharacter);
+        public NonPlayerCharacter UpdateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter);
 
-        public PlayerCharacter CreatePlayerCharacter(PlayerCharacter playerCharacter);
+        public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter);
 
-        public PlayerCharacter UpdatePlayerCharacter(PlayerCharacter playerCharacter);
+        public PlayerCharacter UpdatePlayerCharacter(Character character, PlayerCharacter playerCharacter);
 
         public Character Delete(int id);
 

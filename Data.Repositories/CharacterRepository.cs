@@ -5,15 +5,6 @@ namespace Data.Repositories
 {
     public class CharacterRepository : ICharacterRepository
     {
-        public NonPlayerCharacter CreateNonPlayerCharacter(NonPlayerCharacter nonPlayerCharacter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PlayerCharacter CreatePlayerCharacter(PlayerCharacter playerCharacter)
-        {
-            throw new NotImplementedException();
-        }
 
         public Character Delete(int id)
         {
@@ -40,12 +31,23 @@ namespace Data.Repositories
             throw new NotImplementedException();
         }
 
-        public NonPlayerCharacter UpdateNonPlayerCharacter(NonPlayerCharacter nonPlayerCharacter)
+
+        NonPlayerCharacter ICharacterRepository.CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
         {
             throw new NotImplementedException();
         }
 
-        public PlayerCharacter UpdatePlayerCharacter(PlayerCharacter playerCharacter)
+        PlayerCharacter ICharacterRepository.CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter)
+        {
+            throw new NotImplementedException();
+        }
+
+        NonPlayerCharacter ICharacterRepository.UpdateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
+        {
+            throw new NotImplementedException();
+        }
+
+        PlayerCharacter ICharacterRepository.UpdatePlayerCharacter(Character character, PlayerCharacter playerCharacter)
         {
             throw new NotImplementedException();
         }
