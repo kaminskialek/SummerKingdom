@@ -12,6 +12,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Exceptions", "..\Common.Exceptions\Common.Exceptions.csproj", "{0B62FB37-929A-48A9-BCA0-A38FD7D2E16C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Repositories", "..\Data.Repositories\Data.Repositories.csproj", "{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{888B866A-0EC5-40C5-B9B9-236B759FE309} = {888B866A-0EC5-40C5-B9B9-236B759FE309}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "SummerKingdom.Web\Web.csproj", "{2FCD6156-53D9-42C0-B779-B76A5D2455F3}"
 EndProject
