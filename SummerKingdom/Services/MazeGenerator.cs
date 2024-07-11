@@ -3,7 +3,7 @@
     public class MazeGenerator
     {
         public string[][] maze;
-        public static Random randomizer = new Random();
+        public Random randomizer = new Random();
 
         //Constructor adds borders and gaps based on size
         //The dimensions of the maze are a result of the ASCII symbols used.
