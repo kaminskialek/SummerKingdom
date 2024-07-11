@@ -82,7 +82,7 @@
             //Checks if there is enough space to divide (bottom of recursion)
             if (bottomRow - topRow > 0 && rightColumn - leftColumn > 0)
             {
-                //Picks a either horizontal (0) or vertical (1) direction based on which side of the rectangle area is longer
+                //Picks either a horizontal (0) or vertical (1) direction based on which side of the rectangle area is longer
                 if (bottomRow - topRow > rightColumn - leftColumn)
                 {
                     direction = 0;
