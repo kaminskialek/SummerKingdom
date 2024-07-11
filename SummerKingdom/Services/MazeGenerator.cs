@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Services
+﻿namespace Services
 {
     public class MazeGenerator
     {
         public string[][] Maze;
         public static Random Randomizer = new Random();
 
+        //Constructor adds borders and gaps based on size
+        //The dimensions of the maze are a result of the ASCII symbols used.
         public MazeGenerator(int size)
         {
             this.Maze = new string[size * 2 + 1][];
@@ -80,8 +76,10 @@ namespace Services
 
         public void GenerateMaze(int TopRow, int BottomRow, int LeftColumn, int RightColumn, int pickDirection)
         {
+            //Checks if there is enough space to divide (bottom of recursion)
             if (BottomRow - TopRow > 0 && RightColumn - LeftColumn > 0)
             {
+                //Picks a either horizontal (0) or vertical (1) direction based on which side of the rectangle area is longer
                 if (BottomRow - TopRow > RightColumn - LeftColumn)
                 {
                     pickDirection = 0;
@@ -90,6 +88,8 @@ namespace Services
                 {
                     pickDirection = 1;
                 }
+
+                //Divides horizontally
                 if (pickDirection == 0)
                 {
 
@@ -102,6 +102,7 @@ namespace Services
                     GenerateMaze(TopRow, row - 1, LeftColumn, RightColumn, Randomizer.Next(2));
                     GenerateMaze(row + 1, BottomRow, LeftColumn, RightColumn, Randomizer.Next(2));
                 }
+                //Divides vertically
                 else
                 {
                     int column = Randomizer.Next(LeftColumn, RightColumn);
