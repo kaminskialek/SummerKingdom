@@ -1,18 +1,36 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 
 namespace Data.Repositories
 {
     public class ModuleRepository : IModuleRepository
     {
+        private readonly ApplicationDbContext moduleContext;
+
+        private const string moduleNotFoundErrorMessage = "Module with id {0} cannot be found.";
+        public ModuleRepository(ApplicationDbContext context) 
+        {
+            this.moduleContext = context;
+        }
         public Module Create(Module module)
         {
-            throw new NotImplementedException();
+            moduleContext.Modules.Add(module);
+
+            moduleContext.SaveChanges();
+
+            return module;
         }
 
         public Module Delete(int id)
         {
-            throw new NotImplementedException();
+            Module moduleToDelete = GetById(id);
+
+            moduleToDelete.DeletedOn = DateTime.Now;
+
+            moduleContext.SaveChanges();
+
+            return moduleToDelete;
         }
 
         public Module GetAll()
@@ -22,17 +40,23 @@ namespace Data.Repositories
 
         public Module GetById(int id)
         {
-            throw new NotImplementedException();
+            Module module = moduleContext.Modules
+            .FirstOrDefault(l => l.Id == id) ??
+             throw new EntityNotFoundException(string.Format(moduleNotFoundErrorMessage, id));
+
+            return module;
         }
 
-        public Module GetModule(int id)
+        public Module Update(Module module, int id)
         {
-            throw new NotImplementedException();
-        }
+            Module updatedModule = GetById(id);
 
-        public Module Update(Module module)
-        {
-            throw new NotImplementedException();
+            updatedModule.Title = module.Title;
+            updatedModule.Description = module.Description;
+
+            moduleContext.SaveChanges();
+
+            return updatedModule;
         }
     }
 }
