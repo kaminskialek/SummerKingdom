@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Data.Repositories.Contracts
 {
     public interface IDungeonRepository
     {
+        public Dungeon Create(Dungeon dungeon);
+        
+        public Dungeon Update(Dungeon dungeon, int id);
+
+        public Dungeon Delete(int id);
+
+        public Dungeon GetById(int id);
+
+        public List<Dungeon> GetAll();  
     }
 }

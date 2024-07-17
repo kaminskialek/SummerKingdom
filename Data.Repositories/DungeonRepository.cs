@@ -1,12 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
+using Data.Repositories.Contracts;
 
 namespace Data.Repositories
 {
-    internal class DungeonRepository
+    public class DungeonRepository : IDungeonRepository
     {
+        public Dungeon Create(Dungeon dungeon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dungeon Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Dungeon> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dungeon GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dungeon Update(Dungeon dungeon, int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Data.Repositories.Contracts
 {
-    internal interface ILoreEntryRepository
+    public interface ILoreEntryRepository
     {
+        public LoreEntry Create (LoreEntry loreEntry);
+
+        public LoreEntry Update (LoreEntry loreEntry, int id);
+
+        public LoreEntry Delete (int id);
+
+        public LoreEntry GetById (int id);
+
+        public List<LoreEntry> GetAll ();
     }
 }

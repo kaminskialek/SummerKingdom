@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Data.Repositories.Contracts
 {
-    internal interface IFactionRepository
+    public interface IFactionRepository
     {
+        public Faction Create(Faction faction);
+
+        public Faction Update(Faction faction, int id);
+
+        public Faction Delete(int id);
+
+        public Faction GetById(int id);
+
+        public List<Faction> GetAll();
+
+
     }
 }

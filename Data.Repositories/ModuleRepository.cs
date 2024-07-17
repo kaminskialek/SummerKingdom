@@ -20,6 +20,11 @@ namespace Data.Repositories
             throw new NotImplementedException();
         }
 
+        public Module GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Module GetModule(int id)
         {
             throw new NotImplementedException();
