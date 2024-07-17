@@ -5,14 +5,30 @@ namespace Data.Repositories
 {
     public class AdventureRepository : IAdventureRepository
     {
+        private ApplicationDbContext adventureContext;
+
+        public AdventureRepository(ApplicationDbContext adventureContext)
+        {
+            this.adventureContext = adventureContext;
+        }
         public Adventure Create(Adventure adventure)
         {
-            throw new NotImplementedException();
+            adventureContext.Adventures.Add(adventure);
+
+            adventureContext.SaveChanges();
+
+            return adventure;
         }
 
         public Adventure Delete(int id)
         {
-            throw new NotImplementedException();
+            Adventure adventureToDelete = GetById(id);
+
+            adventureToDelete.DeletedOn = DateTime.Now;
+
+            adventureContext.SaveChanges();
+
+            return adventureToDelete;
         }
 
         public List<Adventure> GetAll()
