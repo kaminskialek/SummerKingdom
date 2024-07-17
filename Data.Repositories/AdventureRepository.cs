@@ -1,11 +1,14 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 
 namespace Data.Repositories
 {
     public class AdventureRepository : IAdventureRepository
     {
-        private ApplicationDbContext adventureContext;
+        private readonly ApplicationDbContext adventureContext;
+
+        private const string adventureNotFoundErrorMessage = "Adventure with id {0} cannot be found.";
 
         public AdventureRepository(ApplicationDbContext adventureContext)
         {
@@ -38,12 +41,23 @@ namespace Data.Repositories
 
         public Adventure GetById(int id)
         {
-            throw new NotImplementedException();
+            Adventure adventure = adventureContext.Adventures
+                .FirstOrDefault(adventure => adventure.Id == id) ?? 
+                throw new EntityNotFoundException(string.Format(adventureNotFoundErrorMessage, id));
+
+            return adventure;
         }
 
         public Adventure Update(Adventure adventure, int id)
         {
-            throw new NotImplementedException();
+            Adventure updatedAdventure = GetById(id);
+
+            updatedAdventure.Title = adventure.Title;
+            updatedAdventure.Description = adventure.Description;
+
+            adventureContext.SaveChanges();
+
+            return updatedAdventure;
         }
     }
 }
