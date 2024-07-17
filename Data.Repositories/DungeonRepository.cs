@@ -1,18 +1,38 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 
 namespace Data.Repositories
 {
     public class DungeonRepository : IDungeonRepository
     {
+
+        private readonly ApplicationDbContext dungeonContext;
+
+        private const string dungeonNotFoundErrorMessage = "Dungeon with id {0} cannot be found.";
+
+        public DungeonRepository(ApplicationDbContext dungeonContext) 
+        {
+            this.dungeonContext = dungeonContext;
+        }
         public Dungeon Create(Dungeon dungeon)
         {
-            throw new NotImplementedException();
+            dungeonContext.Dungeons.Add(dungeon);
+
+            dungeonContext.SaveChanges();
+
+            return dungeon;
         }
 
         public Dungeon Delete(int id)
         {
-            throw new NotImplementedException();
+            Dungeon dungeonToDelete = GetById(id);
+
+            dungeonToDelete.DeletedOn = DateTime.Now;
+
+            dungeonContext.SaveChanges();
+
+            return dungeonToDelete;
         }
 
         public List<Dungeon> GetAll()
@@ -22,12 +42,24 @@ namespace Data.Repositories
 
         public Dungeon GetById(int id)
         {
-            throw new NotImplementedException();
+            Dungeon dungeon = dungeonContext.Dungeons.FirstOrDefault(d => d.Id == id)
+                ?? throw new EntityNotFoundException(string.Format(dungeonNotFoundErrorMessage, id));
+
+            return dungeon;
         }
 
         public Dungeon Update(Dungeon dungeon, int id)
         {
-            throw new NotImplementedException();
+            Dungeon updatedDungeon = GetById(id);
+
+            updatedDungeon.Title = dungeon.Title;
+            updatedDungeon.Encounters = dungeon.Encounters;
+            updatedDungeon.Map = dungeon.Map;
+            updatedDungeon.Description = dungeon.Description;
+
+            dungeonContext.SaveChanges();
+
+            return updatedDungeon;
         }
     }
 }
