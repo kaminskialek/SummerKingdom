@@ -1,18 +1,36 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 
 namespace Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly ApplicationDbContext userContext;
+
+        private const string userNotFoundErrorMessage = "User with {0}: {1} cannot be found.";
+        public UserRepository(ApplicationDbContext context) 
+        {
+            this.userContext = context;
+        }
         public User Create(User user)
         {
-            throw new NotImplementedException();
+            userContext.Users.Add(user);
+
+            userContext.SaveChanges();
+
+            return user;
         }
 
         public User Delete(int id)
         {
-            throw new NotImplementedException();
+            User userToDelete = GetById(id);
+
+            userToDelete.DeletedOn = DateTime.Now;
+
+            userContext.SaveChanges();
+
+            return userToDelete;
         }
 
         public List<User> GetAll()
@@ -22,22 +40,43 @@ namespace Data.Repositories
 
         public User GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            User user = userContext.Users
+            .FirstOrDefault(u => u.Email == email) ??
+            throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "email", email));
+
+            return user;
         }
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            User user = userContext.Users
+            .FirstOrDefault(u => u.Id == id) ??
+            throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "id",id));
+
+            return user;
         }
 
-        public User GetByUserName(string userName)
+        public User GetByUserName(string username)
         {
-            throw new NotImplementedException();
+            User user = userContext.Users
+            .FirstOrDefault(u => u.Username == username) ??
+            throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "username", username));
+
+            return user;
         }
 
         public User Update(int id, User userToUpdate)
         {
-            throw new NotImplementedException();
+            User updatedUser = GetById(id);
+
+            updatedUser.FirstName = userToUpdate.FirstName;
+            updatedUser.LastName = userToUpdate.LastName;
+            updatedUser.Email = userToUpdate.Email;
+            updatedUser.Password = userToUpdate.Password;
+
+            userContext.SaveChanges();
+
+            return updatedUser;
         }
     }
 }

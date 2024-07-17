@@ -6,7 +6,7 @@ namespace Data.Repositories.Contracts
     {
         public User GetById (int id);
         
-        public User GetByUserName (string userName);
+        public User GetByUserName (string username);
 
         public User GetByEmail (string email);
 
