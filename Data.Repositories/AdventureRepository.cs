@@ -42,7 +42,7 @@ namespace Data.Repositories
         public Adventure GetById(int id)
         {
             Adventure adventure = adventureContext.Adventures
-                .FirstOrDefault(adventure => adventure.Id == id) ?? 
+                .FirstOrDefault(adventure => adventure.Id == id && adventure.DeletedOn.HasValue == false) ?? 
                 throw new EntityNotFoundException(string.Format(adventureNotFoundErrorMessage, id));
 
             return adventure;

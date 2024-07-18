@@ -30,6 +30,7 @@ namespace Data.Repositories
         public List<NonPlayerCharacter> GetAllNonPlayerCharacters()
         {
             List<NonPlayerCharacter> NPCs = characterContext.NonPlayerCharacters
+                .Where(npc => npc.DeletedOn.HasValue == false)
                 .Include(npc => npc.Character)
                 .Include(npc => npc.Faction)
                 .ToList();
@@ -40,8 +41,9 @@ namespace Data.Repositories
         public List<PlayerCharacter> GetAllPlayerCharacters()
         {
             List<PlayerCharacter> PCs = characterContext.PlayerCharacters
-                .Include(npc => npc.Character)
-                .Include(npc => npc.Owner)
+                .Where(pc => pc.DeletedOn.HasValue == false)
+                .Include(pc => pc.Character)
+                .Include(pc => pc.Owner)
                 .ToList();
 
             return PCs;
@@ -50,7 +52,7 @@ namespace Data.Repositories
         public Character GetCharacterById(int id)
         {
             Character character = characterContext.Characters
-                .FirstOrDefault(c => c.Id == id) ??
+                .FirstOrDefault(c => c.Id == id && c.DeletedOn.HasValue == false) ??
                 throw new EntityNotFoundException(string.Format(characterNotFoundErrorMessage, "Character", id));
 
             return character;
@@ -60,7 +62,7 @@ namespace Data.Repositories
             NonPlayerCharacter NPC = characterContext.NonPlayerCharacters
                 .Include (npc => npc.Character)
                 .Include(npc => npc.Faction)
-                .FirstOrDefault(c => c.Id == id) ??
+                .FirstOrDefault(c => c.Id == id && c.DeletedOn.HasValue == false) ??
                 throw new EntityNotFoundException(string.Format(characterNotFoundErrorMessage, "Non-player character", id));
 
             return NPC;
@@ -71,7 +73,7 @@ namespace Data.Repositories
             PlayerCharacter PC = characterContext.PlayerCharacters
                 .Include(pc => pc.Character)
                 .Include(pc => pc.Owner)
-                .FirstOrDefault(c => c.Id == id) ??
+                .FirstOrDefault(c => c.Id == id && c.DeletedOn.HasValue == false) ??
                 throw new EntityNotFoundException(string.Format(characterNotFoundErrorMessage, "Player character", id));
 
             return PC;

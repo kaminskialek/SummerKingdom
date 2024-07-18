@@ -42,7 +42,8 @@ namespace Data.Repositories
 
         public Dungeon GetById(int id)
         {
-            Dungeon dungeon = dungeonContext.Dungeons.FirstOrDefault(d => d.Id == id)
+            Dungeon dungeon = dungeonContext.Dungeons
+                .FirstOrDefault(d => d.Id == id && d.DeletedOn.HasValue == false)
                 ?? throw new EntityNotFoundException(string.Format(dungeonNotFoundErrorMessage, id));
 
             return dungeon;

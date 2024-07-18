@@ -42,7 +42,7 @@ namespace Data.Repositories
         public LoreEntry GetById(int id)
         {
             LoreEntry loreEntry = loreEntryContext.LoreEntries
-            .FirstOrDefault(l => l.Id == id) ??
+            .FirstOrDefault(l => l.Id == id && l.DeletedOn.HasValue == false) ??
             throw new EntityNotFoundException(string.Format(loreEntryNotFoundErrorMessage, id));
 
             return loreEntry;

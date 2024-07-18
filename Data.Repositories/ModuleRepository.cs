@@ -41,7 +41,7 @@ namespace Data.Repositories
         public Module GetById(int id)
         {
             Module module = moduleContext.Modules
-            .FirstOrDefault(l => l.Id == id) ??
+            .FirstOrDefault(l => l.Id == id && l.DeletedOn.HasValue == false) ??
              throw new EntityNotFoundException(string.Format(moduleNotFoundErrorMessage, id));
 
             return module;

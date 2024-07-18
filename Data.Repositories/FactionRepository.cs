@@ -9,6 +9,8 @@ namespace Data.Repositories
         private readonly ApplicationDbContext factionContext;
 
         private const string factionNotFoundErrorMessage = "Faction with id {0} cannot be found.";
+
+
         public FactionRepository(ApplicationDbContext context)
         {
             this.factionContext = context;
@@ -40,7 +42,8 @@ namespace Data.Repositories
 
         public Faction GetById(int id)
         {
-            Faction faction = factionContext.Factions.FirstOrDefault(f => f.Id == id)
+            Faction faction = factionContext.Factions
+             .FirstOrDefault(f => f.Id == id && f.DeletedOn.HasValue == false)
              ?? throw new EntityNotFoundException(string.Format(factionNotFoundErrorMessage, id));
 
             return faction;

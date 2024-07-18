@@ -1,6 +1,7 @@
 ﻿using Common.Exceptions;
 using Data.Models;
 using Data.Repositories.Contracts;
+using System.Reflection.Metadata;
 
 namespace Data.Repositories
 {
@@ -41,7 +42,7 @@ namespace Data.Repositories
         public User GetByEmail(string email)
         {
             User user = userContext.Users
-            .FirstOrDefault(u => u.Email == email) ??
+            .FirstOrDefault(u => u.Email == email && u.DeletedOn.HasValue == false) ??
             throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "email", email));
 
             return user;
@@ -50,7 +51,7 @@ namespace Data.Repositories
         public User GetById(int id)
         {
             User user = userContext.Users
-            .FirstOrDefault(u => u.Id == id) ??
+            .FirstOrDefault(u => u.Id == id && u.DeletedOn.HasValue == false) ??
             throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "id",id));
 
             return user;
@@ -59,7 +60,7 @@ namespace Data.Repositories
         public User GetByUserName(string username)
         {
             User user = userContext.Users
-            .FirstOrDefault(u => u.Username == username) ??
+            .FirstOrDefault(u => u.Username == username && u.DeletedOn.HasValue == false) ??
             throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "username", username));
 
             return user;
