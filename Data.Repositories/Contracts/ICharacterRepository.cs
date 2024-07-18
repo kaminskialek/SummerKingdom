@@ -14,11 +14,11 @@ namespace Data.Repositories.Contracts
 
         public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter);
 
-        public NonPlayerCharacter UpdateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter);
+        public NonPlayerCharacter UpdateNonPlayerCharacter(int id, Character character, NonPlayerCharacter nonPlayerCharacter);
 
         public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter);
 
-        public PlayerCharacter UpdatePlayerCharacter(Character character, PlayerCharacter playerCharacter);
+        public PlayerCharacter UpdatePlayerCharacter(int id, Character character, PlayerCharacter playerCharacter);
 
         public Character Delete(int id);
 
