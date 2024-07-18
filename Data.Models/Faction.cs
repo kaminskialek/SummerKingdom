@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Faction : IsDeletable
+    public class Faction : IDeletable
     {
         [Required, Key]
         public int Id { get; set; }

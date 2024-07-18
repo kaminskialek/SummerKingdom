@@ -1,7 +1,6 @@
 ﻿using Common.Exceptions;
 using Data.Models;
 using Data.Repositories.Contracts;
-using System.Reflection.Metadata;
 
 namespace Data.Repositories
 {
@@ -10,7 +9,7 @@ namespace Data.Repositories
         private readonly ApplicationDbContext userContext;
 
         private const string userNotFoundErrorMessage = "User with {0}: {1} cannot be found.";
-        public UserRepository(ApplicationDbContext context) 
+        public UserRepository(ApplicationDbContext context)
         {
             this.userContext = context;
         }
@@ -52,7 +51,7 @@ namespace Data.Repositories
         {
             User user = userContext.Users
             .FirstOrDefault(u => u.Id == id && u.DeletedOn.HasValue == false) ??
-            throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "id",id));
+            throw new EntityNotFoundException(string.Format(userNotFoundErrorMessage, "id", id));
 
             return user;
         }

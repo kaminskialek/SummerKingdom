@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
-    public class Adventure : IsDeletable
+    public class Adventure : IDeletable
     {
         [Required, Key]
         public int Id { get; set; }

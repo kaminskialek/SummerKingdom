@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class User : IsDeletable
+    public class User : IDeletable
     {
         [Required, Key]
         public int Id { get; set; }

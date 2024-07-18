@@ -1,6 +1,6 @@
 ﻿namespace Data.Models
 {
-    public interface IsDeletable
+    public interface IDeletable
     {
         public DateTime? DeletedOn { get; set; } 
     }

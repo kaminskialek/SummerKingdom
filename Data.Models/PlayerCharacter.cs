@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
-    public class PlayerCharacter : IsDeletable
+    public class PlayerCharacter 
     {
         [Key, ForeignKey("Character")]
         public int Id { get; set; }
@@ -17,6 +17,5 @@ namespace Data.Models
 
         public string CharacterSheet { get; set; } = "N/A";
 
-        public DateTime? DeletedOn { get; set; }
     }
 }

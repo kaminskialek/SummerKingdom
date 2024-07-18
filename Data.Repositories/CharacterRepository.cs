@@ -29,10 +29,10 @@ namespace Data.Repositories
 
         public List<NonPlayerCharacter> GetAllNonPlayerCharacters()
         {
-            List<NonPlayerCharacter> NPCs = characterContext.NonPlayerCharacters
-                .Where(npc => npc.DeletedOn.HasValue == false)
+            List<NonPlayerCharacter> NPCs = characterContext.NonPlayerCharacters   
                 .Include(npc => npc.Character)
                 .Include(npc => npc.Faction)
+                .Where(npc => npc.Character.DeletedOn.HasValue == false)
                 .ToList();
 
             return NPCs;
@@ -41,9 +41,9 @@ namespace Data.Repositories
         public List<PlayerCharacter> GetAllPlayerCharacters()
         {
             List<PlayerCharacter> PCs = characterContext.PlayerCharacters
-                .Where(pc => pc.DeletedOn.HasValue == false)
                 .Include(pc => pc.Character)
                 .Include(pc => pc.Owner)
+                .Where(pc => pc.Character.DeletedOn.HasValue == false)
                 .ToList();
 
             return PCs;
@@ -62,7 +62,7 @@ namespace Data.Repositories
             NonPlayerCharacter NPC = characterContext.NonPlayerCharacters
                 .Include (npc => npc.Character)
                 .Include(npc => npc.Faction)
-                .FirstOrDefault(c => c.Id == id && c.DeletedOn.HasValue == false) ??
+                .FirstOrDefault(c => c.Id == id && c.Character.DeletedOn.HasValue == false) ??
                 throw new EntityNotFoundException(string.Format(characterNotFoundErrorMessage, "Non-player character", id));
 
             return NPC;
@@ -73,7 +73,7 @@ namespace Data.Repositories
             PlayerCharacter PC = characterContext.PlayerCharacters
                 .Include(pc => pc.Character)
                 .Include(pc => pc.Owner)
-                .FirstOrDefault(c => c.Id == id && c.DeletedOn.HasValue == false) ??
+                .FirstOrDefault(c => c.Id == id && c.Character.DeletedOn.HasValue == false) ??
                 throw new EntityNotFoundException(string.Format(characterNotFoundErrorMessage, "Player character", id));
 
             return PC;
