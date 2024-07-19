@@ -10,7 +10,7 @@ namespace Data.Models
 
         public Character Character { get; set; } = null!;
 
-        [Required, ForeignKey("User")]
+        [Required, ForeignKey("Owner")]
         public int OwnerId { get; set; }
 
         public User Owner { get; set; } = null!;

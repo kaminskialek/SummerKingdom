@@ -14,7 +14,7 @@ namespace Data.Models
         [Required]
         public string Content { get; set; } = null!;
 
-        [Required, ForeignKey("User")]
+        [Required, ForeignKey("Author")]
         public int AuthorId { get; set; }
 
         public User Author { get; set; } = null!;

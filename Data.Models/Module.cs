@@ -14,7 +14,7 @@ namespace Data.Models
         [Required]
         public string Description { get; set; } = null!;
 
-        [Required, ForeignKey("User")]
+        [Required, ForeignKey("Creator")]
         public int CreatorId { get; set; }
         public User Creator { get; set; } = null!;
 

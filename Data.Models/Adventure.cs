@@ -11,7 +11,7 @@ namespace Data.Models
         [Required]
         public string Title { get; set; } = null!;
 
-        [Required, ForeignKey("Module")]
+        [Required]
         public int ModuleId { get; set; }
 
         public Module Module { get; set; } = null!;

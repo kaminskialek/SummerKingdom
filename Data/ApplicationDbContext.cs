@@ -34,6 +34,11 @@ namespace Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Module>()
+                     .HasOne(m => m.Creator)
+                     .WithMany(u => u.CreatedModules)
+                     .HasForeignKey(m => m.CreatorId);
+
             modelBuilder.Entity<PlayerCharacter>()
                     .HasOne(pc => pc.Character)
                     .WithOne(c => c.PlayerCharacter)
@@ -116,6 +121,7 @@ namespace Data
                 new Module
                 {
                     Id = 1,
+                    CreatorId = 1,
                     Title = "Salt, Moss and Anise",
                     Description = "This is the starting module in the series. It spans levels 1-5."
                 },
@@ -123,6 +129,7 @@ namespace Data
                 new Module
                 {
                     Id = 2,
+                    CreatorId = 1,
                     Title = "A Wizard's Playthings",
                     Description = "This is the second module in the series. It spans levels 5-9."
                 }
@@ -269,12 +276,14 @@ namespace Data
                 {
                     Id = 1,
                     FactionId = 1,
+                    CreatorId = 1
                 },
 
                 new NonPlayerCharacter
                 {
                     Id= 3,
                     FactionId = 2,
+                    CreatorId = 1
                 }
             };
 

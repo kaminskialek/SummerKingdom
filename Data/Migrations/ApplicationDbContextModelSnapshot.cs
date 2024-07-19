@@ -293,6 +293,9 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -306,18 +309,22 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorId");
+
                     b.ToTable("Modules");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CreatorId = 1,
                             Description = "This is the starting module in the series. It spans levels 1-5.",
                             Title = "Salt, Moss and Anise"
                         },
                         new
                         {
                             Id = 2,
+                            CreatorId = 1,
                             Description = "This is the second module in the series. It spans levels 5-9.",
                             Title = "A Wizard's Playthings"
                         });
@@ -331,8 +338,8 @@ namespace Data.Migrations
                     b.Property<int?>("AdventureId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FactionId")
                         .HasColumnType("int");
@@ -345,6 +352,8 @@ namespace Data.Migrations
 
                     b.HasIndex("AdventureId");
 
+                    b.HasIndex("CreatorId");
+
                     b.HasIndex("FactionId");
 
                     b.ToTable("NonPlayerCharacters");
@@ -353,12 +362,14 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1,
+                            CreatorId = 1,
                             FactionId = 1,
                             StatBlock = "N/A"
                         },
                         new
                         {
                             Id = 3,
+                            CreatorId = 1,
                             FactionId = 2,
                             StatBlock = "N/A"
                         });
@@ -372,9 +383,6 @@ namespace Data.Migrations
                     b.Property<string>("CharacterSheet")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
@@ -538,12 +546,29 @@ namespace Data.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("Data.Models.Module", b =>
+                {
+                    b.HasOne("Data.Models.User", "Creator")
+                        .WithMany("CreatedModules")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+                });
+
             modelBuilder.Entity("Data.Models.NonPlayerCharacter", b =>
                 {
                     b.HasOne("Data.Models.Adventure", null)
                         .WithMany("Characters")
                         .HasForeignKey("AdventureId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Data.Models.User", "Creator")
+                        .WithMany("CreatedNonPlayerCharacters")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Data.Models.Faction", "Faction")
                         .WithMany("Members")
@@ -558,6 +583,8 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Character");
+
+                    b.Navigation("Creator");
 
                     b.Navigation("Faction");
                 });
@@ -627,6 +654,10 @@ namespace Data.Migrations
                     b.Navigation("Characters");
 
                     b.Navigation("CompletedAdventures");
+
+                    b.Navigation("CreatedModules");
+
+                    b.Navigation("CreatedNonPlayerCharacters");
 
                     b.Navigation("LoreEntries");
                 });

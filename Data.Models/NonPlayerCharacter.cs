@@ -13,7 +13,7 @@ namespace Data.Models
         [Required, ForeignKey("Faction")]
         public int FactionId;
 
-        [Required, ForeignKey("User")]
+        [Required, ForeignKey("Creator")]
         public int CreatorId { get; set; }
         public User Creator { get; set; } = null!;
 

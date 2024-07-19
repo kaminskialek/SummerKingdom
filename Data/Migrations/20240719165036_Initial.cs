@@ -41,21 +41,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Modules",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Modules", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -99,28 +84,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adventures",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModuleId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adventures", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adventures_Modules_ModuleId",
-                        column: x => x.ModuleId,
-                        principalTable: "Modules",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LoreEntries",
                 columns: table => new
                 {
@@ -143,13 +106,34 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Modules_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PlayerCharacters",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    CharacterSheet = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CharacterSheet = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,6 +148,28 @@ namespace Data.Migrations
                         name: "FK_PlayerCharacters_Users_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Adventures",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModuleId = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adventures", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adventures_Modules_ModuleId",
+                        column: x => x.ModuleId,
+                        principalTable: "Modules",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -220,9 +226,9 @@ namespace Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: false),
                     FactionId = table.Column<int>(type: "int", nullable: false),
                     StatBlock = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AdventureId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -244,6 +250,12 @@ namespace Data.Migrations
                         name: "FK_NonPlayerCharacters_Factions_FactionId",
                         column: x => x.FactionId,
                         principalTable: "Factions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_NonPlayerCharacters_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -269,15 +281,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Modules",
-                columns: new[] { "Id", "DeletedOn", "Description", "Title" },
-                values: new object[,]
-                {
-                    { 1, null, "This is the starting module in the series. It spans levels 1-5.", "Salt, Moss and Anise" },
-                    { 2, null, "This is the second module in the series. It spans levels 5-9.", "A Wizard's Playthings" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DeletedOn", "Email", "FirstName", "LastName", "Password", "UserType", "Username" },
                 values: new object[,]
@@ -285,15 +288,6 @@ namespace Data.Migrations
                     { 1, null, "alexkalionski@gmail.com", "Alexei", "Kalionski", "kaminski", 0, "Shoni" },
                     { 2, null, "k.al.sotirov@gmail.com", "Kiril", "Sotirov", "azlanrustmane", 1, "Azlan" },
                     { 3, null, "stefan.neschev@gmai.com", "Stefan", "Neshev", "donnelkoza", 2, "Donnel" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Adventures",
-                columns: new[] { "Id", "DeletedOn", "Description", "ModuleId", "Title" },
-                values: new object[,]
-                {
-                    { 1, null, "Players must find out about the Baron Stern Brow's daughter, Patience. They must travel to Nacre in hopes of finding her.", 1, "Road to Nacre" },
-                    { 2, null, "Players must help Mayor Sea Foam with recent disappearances of his younger citizens.", 1, "The Missing Children" }
                 });
 
             migrationBuilder.InsertData(
@@ -306,22 +300,41 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "NonPlayerCharacters",
-                columns: new[] { "Id", "AdventureId", "DeletedOn", "FactionId", "StatBlock" },
+                table: "Modules",
+                columns: new[] { "Id", "CreatorId", "DeletedOn", "Description", "Title" },
                 values: new object[,]
                 {
-                    { 1, null, null, 1, "N/A" },
-                    { 3, null, null, 2, "N/A" }
+                    { 1, 1, null, "This is the starting module in the series. It spans levels 1-5.", "Salt, Moss and Anise" },
+                    { 2, 1, null, "This is the second module in the series. It spans levels 5-9.", "A Wizard's Playthings" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "NonPlayerCharacters",
+                columns: new[] { "Id", "AdventureId", "CreatorId", "FactionId", "StatBlock" },
+                values: new object[,]
+                {
+                    { 1, null, 1, 1, "N/A" },
+                    { 3, null, 1, 2, "N/A" }
                 });
 
             migrationBuilder.InsertData(
                 table: "PlayerCharacters",
-                columns: new[] { "Id", "CharacterSheet", "DeletedOn", "OwnerId" },
+                columns: new[] { "Id", "CharacterSheet", "OwnerId" },
                 values: new object[,]
                 {
-                    { 2, "N/A", null, 2 },
-                    { 4, "N/A", null, 3 }
+                    { 2, "N/A", 2 },
+                    { 4, "N/A", 3 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Adventures",
+                columns: new[] { "Id", "DeletedOn", "Description", "ModuleId", "Title" },
+                values: new object[] { 1, null, "Players must find out about the Baron Stern Brow's daughter, Patience. They must travel to Nacre in hopes of finding her.", 1, "Road to Nacre" });
+
+            migrationBuilder.InsertData(
+                table: "Adventures",
+                columns: new[] { "Id", "DeletedOn", "Description", "ModuleId", "Title" },
+                values: new object[] { 2, null, "Players must help Mayor Sea Foam with recent disappearances of his younger citizens.", 1, "The Missing Children" });
 
             migrationBuilder.InsertData(
                 table: "CompletedAdventures",
@@ -367,9 +380,19 @@ namespace Data.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Modules_CreatorId",
+                table: "Modules",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NonPlayerCharacters_AdventureId",
                 table: "NonPlayerCharacters",
                 column: "AdventureId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NonPlayerCharacters_CreatorId",
+                table: "NonPlayerCharacters",
+                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_NonPlayerCharacters_FactionId",
@@ -412,10 +435,10 @@ namespace Data.Migrations
                 name: "Characters");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Modules");
 
             migrationBuilder.DropTable(
-                name: "Modules");
+                name: "Users");
         }
     }
 }
