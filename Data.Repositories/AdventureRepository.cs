@@ -14,9 +14,11 @@ namespace Data.Repositories
         {
             this.adventureContext = adventureContext;
         }
-        public Adventure Create(Adventure adventure)
+        public Adventure Create(Adventure adventure, Module module)
         {
             adventureContext.Adventures.Add(adventure);
+
+            module.Adventures.Add(adventure);
 
             adventureContext.SaveChanges();
 

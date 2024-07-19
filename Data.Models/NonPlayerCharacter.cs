@@ -13,6 +13,10 @@ namespace Data.Models
         [Required, ForeignKey("Faction")]
         public int FactionId;
 
+        [Required, ForeignKey("User")]
+        public int CreatorId { get; set; }
+        public User Creator { get; set; } = null!;
+
         public Faction Faction { get; set; } = null!;
 
         public string StatBlock { get; set; } = "N/A";

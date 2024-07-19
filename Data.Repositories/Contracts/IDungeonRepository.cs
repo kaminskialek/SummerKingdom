@@ -4,7 +4,7 @@ namespace Data.Repositories.Contracts
 {
     public interface IDungeonRepository
     {
-        public Dungeon Create(Dungeon dungeon);
+        public Dungeon Create(Dungeon dungeon, Adventure adventure);
         
         public Dungeon Update(Dungeon dungeon, int id);
 

@@ -29,6 +29,10 @@ namespace Data.Models
 
         public List<PlayerCharacter> Characters { get; set; } = new List<PlayerCharacter>();
 
+        public List<NonPlayerCharacter> CreatedNonPlayerCharacters { get; set; } = new List<NonPlayerCharacter>();
+
+        public List<Module> CreatedModules { get; set; } = new List<Module> ();
+
         public List<CompletedAdventure> CompletedAdventures { get; set; } = new List<CompletedAdventure>();
 
         public DateTime? DeletedOn { get; set; }

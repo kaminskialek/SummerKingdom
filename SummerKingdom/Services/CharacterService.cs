@@ -11,17 +11,17 @@ namespace Services
         {
             this.characterRepository = characterRepository;
         }
-        public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
+        public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter, User user)
         {
             return characterRepository.CreateNonPlayerCharacter(character, nonPlayerCharacter);
         }
 
-        public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter)
+        public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter, User user)
         {
             return characterRepository.CreatePlayerCharacter(character, playerCharacter);   
         }
 
-        public Character Delete(int id)
+        public Character Delete(int id, User user)
         {
             return characterRepository.Delete(id);
         }
@@ -36,22 +36,24 @@ namespace Services
             return characterRepository.GetAllPlayerCharacters();
         }
 
-        public NonPlayerCharacter GetNonPlayerCharacter(int id)
+        public NonPlayerCharacter GetNonPlayerCharacter(int id, User user)
         {
             return characterRepository.GetNonPlayerCharacter(id);
         }
 
-        public PlayerCharacter GetPlayerCharacter(int id)
+        public PlayerCharacter GetPlayerCharacter(int id, User user)
         {
             return characterRepository.GetPlayerCharacter(id);
         }
 
-        public NonPlayerCharacter UpdateNonPlayerCharacter(int id, Character character, NonPlayerCharacter nonPlayerCharacter)
+        public NonPlayerCharacter UpdateNonPlayerCharacter
+            (int id, Character character, NonPlayerCharacter nonPlayerCharacter, User user)
         {
             return characterRepository.UpdateNonPlayerCharacter(id, character, nonPlayerCharacter);
         }
 
-        public PlayerCharacter UpdatePlayerCharacter(int id, Character character, PlayerCharacter playerCharacter)
+        public PlayerCharacter UpdatePlayerCharacter
+            (int id, Character character, PlayerCharacter playerCharacter, User user)
         {
             return characterRepository.UpdatePlayerCharacter(id, character, playerCharacter);
         }

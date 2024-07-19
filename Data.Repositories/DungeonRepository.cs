@@ -15,9 +15,11 @@ namespace Data.Repositories
         {
             this.dungeonContext = dungeonContext;
         }
-        public Dungeon Create(Dungeon dungeon)
+        public Dungeon Create(Dungeon dungeon, Adventure adventure)
         {
             dungeonContext.Dungeons.Add(dungeon);
+
+            adventure.Dungeons.Add(dungeon);
 
             dungeonContext.SaveChanges();
 

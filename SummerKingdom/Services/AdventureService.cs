@@ -11,12 +11,13 @@ namespace Services
         {
             this.adventureRepository = adventureRepository;
         }
-        public Adventure Create(Adventure adventure)
+        public Adventure Create(Adventure adventure,Module module, User user)
         {
-            return this.adventureRepository.Create(adventure);
+            
+            return this.adventureRepository.Create(adventure, module);
         }
 
-        public Adventure Delete(int id)
+        public Adventure Delete(int id, User user)
         {
             return this.adventureRepository.Delete(id);
         }
@@ -26,12 +27,12 @@ namespace Services
             return this.adventureRepository.GetAll();
         }
 
-        public Adventure GetById(int id)
+        public Adventure GetById(int id, User user)
         {
             return this.adventureRepository.GetById(id);
         }
 
-        public Adventure Update(Adventure adventure, int id)
+        public Adventure Update(Adventure adventure, int id, User user)
         {
             return this.adventureRepository.Update(adventure, id);
         }

@@ -4,7 +4,7 @@ namespace Data.Repositories.Contracts
 {
     public interface IAdventureRepository
     {
-        public Adventure Create (Adventure adventure);
+        public Adventure Create (Adventure adventure, Module module);
 
         public Adventure Update (Adventure adventure, int id);
 

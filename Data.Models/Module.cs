@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -12,6 +13,10 @@ namespace Data.Models
 
         [Required]
         public string Description { get; set; } = null!;
+
+        [Required, ForeignKey("User")]
+        public int CreatorId { get; set; }
+        public User Creator { get; set; } = null!;
 
         public List<Adventure> Adventures { get; set; } = new List<Adventure>();
 

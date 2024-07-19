@@ -11,12 +11,12 @@ namespace Services
         {
             this.dungeonRepository = dungeonRepository;
         }
-        public Dungeon Create(Dungeon dungeon)
+        public Dungeon Create(Dungeon dungeon, Adventure adventure, User user)
         {
-            return this.dungeonRepository.Create(dungeon);
+            return this.dungeonRepository.Create(dungeon, adventure);
         }
 
-        public Dungeon Delete(int id)
+        public Dungeon Delete(int id, User user)
         {
             return this.dungeonRepository.Delete(id);
         }
@@ -26,12 +26,12 @@ namespace Services
             return this.dungeonRepository.GetAll();
         }
 
-        public Dungeon GetById(int id)
+        public Dungeon GetById(int id, User user)
         {
             return this.dungeonRepository.GetById(id);
         }
 
-        public Dungeon Update(Dungeon dungeon, int id)
+        public Dungeon Update(Dungeon dungeon, int id, User user)
         {
             return this.dungeonRepository.Update(dungeon, id);   
         }
