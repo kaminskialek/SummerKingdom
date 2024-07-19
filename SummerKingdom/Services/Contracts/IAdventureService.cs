@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Services.Contracts
 {
-    internal interface IAdventureService
+    public interface IAdventureService
     {
+        public Adventure Create(Adventure adventure);
+
+        public Adventure Update(Adventure adventure, int id);
+
+        public Adventure Delete(int id);
+
+        public Adventure GetById(int id);
+
+        public List<Adventure> GetAll();
     }
 }

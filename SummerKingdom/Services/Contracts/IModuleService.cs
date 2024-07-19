@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Services.Contracts
 {
-    internal interface IModuleService
+    public interface IModuleService
     {
+        public Module GetById(int id);
+
+        public Module GetAll();
+
+        public Module Create(Module module);
+
+        public Module Update(Module module, int id);
+
+        public Module Delete(int id);
     }
 }

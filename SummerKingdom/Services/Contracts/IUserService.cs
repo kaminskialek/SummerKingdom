@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Models;
 
 namespace Services.Contracts
 {
-    internal interface IUserService
+    public interface IUserService
     {
+        public User GetById(int id);
+
+        public User GetByUserName(string username);
+
+        public User GetByEmail(string email);
+
+        public List<User> GetAll();
+
+        public User Create(User user);
+
+        public User Update(int id, User userToUpdate);
+
+        public User Delete(int id);
     }
 }
