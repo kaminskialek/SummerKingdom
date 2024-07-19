@@ -15,37 +15,37 @@ namespace Services
 
         public User Create(User user)
         {
-            throw new NotImplementedException();
+            return this.userRepository.Create(user);
         }
 
         public User Delete(int id)
         {
-            throw new NotImplementedException();
+            return this.userRepository.Delete(id);
         }
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return this.userRepository.GetAll();    
         }
 
         public User GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            return this.userRepository.GetByEmail(email);
         }
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.userRepository.GetById(id);
         }
 
         public User GetByUserName(string username)
         {
-            throw new NotImplementedException();
+            return this.userRepository.GetByUserName(username);
         }
 
         public User Update(int id, User userToUpdate)
         {
-            throw new NotImplementedException();
+            return this.userRepository.Update(id, userToUpdate);
         }
     }
 }
