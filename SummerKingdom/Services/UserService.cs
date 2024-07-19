@@ -1,10 +1,18 @@
 ﻿using Data.Models;
+using Data.Repositories.Contracts;
+
 using Services.Contracts;
 
 namespace Services
 {
     public class UserService : IUserService
     {
+        private readonly IUserRepository userRepository;
+        public UserService(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
+
         public User Create(User user)
         {
             throw new NotImplementedException();

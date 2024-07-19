@@ -1,10 +1,16 @@
 ﻿using Data.Models;
+using Data.Repositories.Contracts;
 using Services.Contracts;
 
 namespace Services
 {
     public class AdventureService : IAdventureService
     {
+        private readonly IAdventureRepository adventureRepository;
+        public AdventureService(IAdventureRepository adventureRepository)
+        {
+            this.adventureRepository = adventureRepository;
+        }
         public Adventure Create(Adventure adventure)
         {
             throw new NotImplementedException();

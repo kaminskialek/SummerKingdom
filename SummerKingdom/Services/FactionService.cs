@@ -1,10 +1,16 @@
 ﻿using Data.Models;
+using Data.Repositories.Contracts;
 using Services.Contracts;
 
 namespace Services
 {
     public class FactionService : IFactionService
     {
+        private readonly IFactionRepository factionRepository;
+        public FactionService(IFactionRepository factionRepository)
+        {
+            this.factionRepository = factionRepository;
+        }
         public Faction Create(Faction faction)
         {
             throw new NotImplementedException();

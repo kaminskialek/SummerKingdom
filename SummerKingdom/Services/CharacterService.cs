@@ -1,10 +1,16 @@
 ﻿using Data.Models;
+using Data.Repositories.Contracts;
 using Services.Contracts;
 
 namespace Services
 {
     public class CharacterService : ICharacterService
     {
+        private readonly ICharacterRepository characterRepository;
+        public CharacterService(ICharacterRepository characterRepository)
+        {
+            this.characterRepository = characterRepository;
+        }
         public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
         {
             throw new NotImplementedException();
