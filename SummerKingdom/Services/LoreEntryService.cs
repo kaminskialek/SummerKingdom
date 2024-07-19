@@ -13,27 +13,27 @@ namespace Services
         }
         public LoreEntry Create(LoreEntry loreEntry)
         {
-            throw new NotImplementedException();
+            return loreEntryRepository.Create(loreEntry);
         }
 
         public LoreEntry Delete(int id)
         {
-            throw new NotImplementedException();
+            return loreEntryRepository.Delete(id);
         }
 
         public List<LoreEntry> GetAll()
         {
-            throw new NotImplementedException();
+            return loreEntryRepository.GetAll();
         }
 
         public LoreEntry GetById(int id)
         {
-            throw new NotImplementedException();
+            return loreEntryRepository.GetById(id);
         }
 
         public LoreEntry Update(LoreEntry loreEntry, int id)
         {
-            throw new NotImplementedException();
+            return loreEntryRepository.Update(loreEntry, id);
         }
     }
 }

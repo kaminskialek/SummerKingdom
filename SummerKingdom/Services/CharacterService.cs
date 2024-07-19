@@ -13,47 +13,47 @@ namespace Services
         }
         public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
         {
-            throw new NotImplementedException();
+            return characterRepository.CreateNonPlayerCharacter(character, nonPlayerCharacter);
         }
 
         public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter)
         {
-            throw new NotImplementedException();
+            return characterRepository.CreatePlayerCharacter(character, playerCharacter);   
         }
 
         public Character Delete(int id)
         {
-            throw new NotImplementedException();
+            return characterRepository.Delete(id);
         }
 
         public List<NonPlayerCharacter> GetAllNonPlayerCharacters()
         {
-            throw new NotImplementedException();
+            return characterRepository.GetAllNonPlayerCharacters();
         }
 
         public List<PlayerCharacter> GetAllPlayerCharacters()
         {
-            throw new NotImplementedException();
+            return characterRepository.GetAllPlayerCharacters();
         }
 
         public NonPlayerCharacter GetNonPlayerCharacter(int id)
         {
-            throw new NotImplementedException();
+            return characterRepository.GetNonPlayerCharacter(id);
         }
 
         public PlayerCharacter GetPlayerCharacter(int id)
         {
-            throw new NotImplementedException();
+            return characterRepository.GetPlayerCharacter(id);
         }
 
         public NonPlayerCharacter UpdateNonPlayerCharacter(int id, Character character, NonPlayerCharacter nonPlayerCharacter)
         {
-            throw new NotImplementedException();
+            return characterRepository.UpdateNonPlayerCharacter(id, character, nonPlayerCharacter);
         }
 
         public PlayerCharacter UpdatePlayerCharacter(int id, Character character, PlayerCharacter playerCharacter)
         {
-            throw new NotImplementedException();
+            return characterRepository.UpdatePlayerCharacter(id, character, playerCharacter);
         }
     }
 }

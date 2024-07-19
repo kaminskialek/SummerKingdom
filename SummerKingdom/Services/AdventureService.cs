@@ -13,27 +13,27 @@ namespace Services
         }
         public Adventure Create(Adventure adventure)
         {
-            throw new NotImplementedException();
+            return this.adventureRepository.Create(adventure);
         }
 
         public Adventure Delete(int id)
         {
-            throw new NotImplementedException();
+            return this.adventureRepository.Delete(id);
         }
 
         public List<Adventure> GetAll()
         {
-            throw new NotImplementedException();
+            return this.adventureRepository.GetAll();
         }
 
         public Adventure GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.adventureRepository.GetById(id);
         }
 
         public Adventure Update(Adventure adventure, int id)
         {
-            throw new NotImplementedException();
+            return this.adventureRepository.Update(adventure, id);
         }
     }
 }

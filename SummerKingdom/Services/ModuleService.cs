@@ -13,27 +13,27 @@ namespace Services
         }
         public Module Create(Module module)
         {
-            throw new NotImplementedException();
+            return this.moduleRepository.Create(module);
         }
 
         public Module Delete(int id)
         {
-            throw new NotImplementedException();
+            return this.moduleRepository.Delete(id);
         }
 
         public Module GetAll()
         {
-            throw new NotImplementedException();
+            return this.moduleRepository.GetAll();
         }
 
         public Module GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.moduleRepository.GetById(id);
         }
 
         public Module Update(Module module, int id)
         {
-            throw new NotImplementedException();
+            return this.moduleRepository.Update(module, id);
         }
     }
 }

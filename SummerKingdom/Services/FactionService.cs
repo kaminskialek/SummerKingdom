@@ -13,27 +13,27 @@ namespace Services
         }
         public Faction Create(Faction faction)
         {
-            throw new NotImplementedException();
+            return this.factionRepository.Create(faction);
         }
 
         public Faction Delete(int id)
         {
-            throw new NotImplementedException();
+            return this.factionRepository.Delete(id);
         }
 
         public List<Faction> GetAll()
         {
-            throw new NotImplementedException();
+            return this.factionRepository.GetAll();
         }
 
         public Faction GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.factionRepository.GetById(id);
         }
 
         public Faction Update(Faction faction, int id)
         {
-            throw new NotImplementedException();
+            return this.factionRepository.Update(faction, id);
         }
     }
 }

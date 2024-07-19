@@ -6,34 +6,34 @@ namespace Services
 {
     public class DungeonService : IDungeonService
     {
-        private readonly IAdventureRepository adventureRepository;
-        public DungeonService(IAdventureRepository adventureRepository)
+        private readonly IDungeonRepository dungeonRepository;
+        public DungeonService(IDungeonRepository dungeonRepository)
         {
-            this.adventureRepository = adventureRepository;
+            this.dungeonRepository = dungeonRepository;
         }
         public Dungeon Create(Dungeon dungeon)
         {
-            throw new NotImplementedException();
+            return this.dungeonRepository.Create(dungeon);
         }
 
         public Dungeon Delete(int id)
         {
-            throw new NotImplementedException();
+            return this.dungeonRepository.Delete(id);
         }
 
         public List<Dungeon> GetAll()
         {
-            throw new NotImplementedException();
+            return this.dungeonRepository.GetAll();
         }
 
         public Dungeon GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.dungeonRepository.GetById(id);
         }
 
         public Dungeon Update(Dungeon dungeon, int id)
         {
-            throw new NotImplementedException();
+            return this.dungeonRepository.Update(dungeon, id);   
         }
     }
 }
