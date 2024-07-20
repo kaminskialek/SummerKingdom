@@ -6,9 +6,9 @@ namespace Data.Repositories.Contracts
     {
         public Adventure Create (Adventure adventure, Module module);
 
-        public Adventure Update (Adventure adventure, int id);
+        public Adventure Update (Adventure adventure, Adventure updatedAdventure);
 
-        public Adventure Delete (int id);
+        public Adventure Delete (Adventure adventure);
 
         public Adventure GetById (int id);
 

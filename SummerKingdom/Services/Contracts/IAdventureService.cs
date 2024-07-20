@@ -10,7 +10,7 @@ namespace Services.Contracts
 
         public Adventure Delete(int id, User user);
 
-        public Adventure GetById(int id, User user);
+        public Adventure GetById(int id);
 
         public List<Adventure> GetAll();
     }

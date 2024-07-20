@@ -25,9 +25,8 @@ namespace Data.Repositories
             return adventure;
         }
 
-        public Adventure Delete(int id)
+        public Adventure Delete(Adventure adventureToDelete)
         {
-            Adventure adventureToDelete = GetById(id);
 
             adventureToDelete.DeletedOn = DateTime.Now;
 
@@ -50,9 +49,8 @@ namespace Data.Repositories
             return adventure;
         }
 
-        public Adventure Update(Adventure adventure, int id)
+        public Adventure Update(Adventure adventure, Adventure updatedAdventure)
         {
-            Adventure updatedAdventure = GetById(id);
 
             updatedAdventure.Title = adventure.Title;
             updatedAdventure.Description = adventure.Description;
