@@ -1,6 +1,7 @@
 ﻿using Common.Exceptions;
 using Data.Models;
 using Data.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories
 {
@@ -43,6 +44,7 @@ namespace Data.Repositories
         public Adventure GetById(int id)
         {
             Adventure adventure = adventureContext.Adventures
+                .Include(a => a.Module)
                 .FirstOrDefault(adventure => adventure.Id == id && adventure.DeletedOn.HasValue == false) ?? 
                 throw new EntityNotFoundException(string.Format(adventureNotFoundErrorMessage, id));
 

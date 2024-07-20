@@ -1,6 +1,7 @@
 ﻿using Common.Exceptions;
 using Data.Models;
 using Data.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories
 {
@@ -45,6 +46,8 @@ namespace Data.Repositories
         public Dungeon GetById(int id)
         {
             Dungeon dungeon = dungeonContext.Dungeons
+                .Include(d => d.Adventure)
+                .ThenInclude(a => a.Module)
                 .FirstOrDefault(d => d.Id == id && d.DeletedOn.HasValue == false)
                 ?? throw new EntityNotFoundException(string.Format(dungeonNotFoundErrorMessage, id));
 

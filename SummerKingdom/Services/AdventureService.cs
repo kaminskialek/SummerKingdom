@@ -1,4 +1,5 @@
-﻿using Common.Exceptions;
+﻿using Common;
+using Common.Exceptions;
 using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
@@ -7,8 +8,6 @@ namespace Services
 {
     public class AdventureService : IAdventureService
     {
-        private const string UnauthorizedOperationErrorMessage = "Only and admin or dungeon master may perform this action.";
-        private const string NotCreatorErrorMessage = "Only the module creator or an admin may perform this action.";
 
         private readonly IAdventureRepository adventureRepository;
         public AdventureService(IAdventureRepository adventureRepository)
@@ -19,7 +18,7 @@ namespace Services
         {
             if (user.UserType == UserType.Player)
             {
-                throw new UnauthorizedOperationException(UnauthorizedOperationErrorMessage);
+                throw new UnauthorizedOperationException(Constants.UnauthorizedOperationErrorMessage);
             }
             return this.adventureRepository.Create(adventure, module);
         }
@@ -29,7 +28,7 @@ namespace Services
             Adventure adventureToDelete = adventureRepository.GetById(id);
             if(user.UserType != UserType.Admin && adventureToDelete.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
             }
             return this.adventureRepository.Delete(adventureToDelete);
         }
@@ -49,7 +48,7 @@ namespace Services
             Adventure updatedAdventure = adventureRepository.GetById(id);
             if(user.UserType != UserType.Admin && updatedAdventure.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
             }
             return this.adventureRepository.Update(adventure, updatedAdventure);
         }
