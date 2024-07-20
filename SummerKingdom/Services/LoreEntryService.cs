@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
 
@@ -11,14 +12,19 @@ namespace Services
         {
             this.loreEntryRepository = loreEntryRepository;
         }
-        public LoreEntry Create(LoreEntry loreEntry)
+        public LoreEntry Create(LoreEntry loreEntry, User user)
         {
-            return loreEntryRepository.Create(loreEntry);
+            return loreEntryRepository.Create(loreEntry, user);
         }
 
-        public LoreEntry Delete(int id)
+        public LoreEntry Delete(int id, User user)
         {
-            return loreEntryRepository.Delete(id);
+            LoreEntry loreEntryToDelete = loreEntryRepository.GetById(id);
+            if (user.UserType != UserType.Admin && loreEntryToDelete.Author != user)
+            {
+                throw new UnauthorizedOperationException("Only and admin or the author of a lore entry may delete it.");
+            }
+            return loreEntryRepository.Delete(loreEntryToDelete);
         }
 
         public List<LoreEntry> GetAll()
@@ -31,9 +37,14 @@ namespace Services
             return loreEntryRepository.GetById(id);
         }
 
-        public LoreEntry Update(LoreEntry loreEntry, int id)
+        public LoreEntry Update(LoreEntry loreEntry, int id, User user)
         {
-            return loreEntryRepository.Update(loreEntry, id);
+            LoreEntry updatedLoreEntry = loreEntryRepository.GetById(id);
+            if (user.UserType != UserType.Admin && updatedLoreEntry.Author != user)
+            {
+                throw new UnauthorizedOperationException("Only and admin or the author of a lore entry may modify it.");
+            }
+            return loreEntryRepository.Update(loreEntry, updatedLoreEntry);
         }
     }
 }

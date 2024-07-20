@@ -14,8 +14,10 @@ namespace Data.Repositories
         {
             this.loreEntryContext = context;
         }
-        public LoreEntry Create(LoreEntry loreEntry)
+        public LoreEntry Create(LoreEntry loreEntry, User user)
         {
+            loreEntry.Author = user;
+
             loreEntryContext.LoreEntries.Add(loreEntry);
 
             loreEntryContext.SaveChanges();
@@ -23,9 +25,8 @@ namespace Data.Repositories
             return loreEntry;
         }
 
-        public LoreEntry Delete(int id)
+        public LoreEntry Delete(LoreEntry loreEntryToDelete)
         {
-            LoreEntry loreEntryToDelete = GetById(id);
 
             loreEntryToDelete.DeletedOn = DateTime.Now;
 
@@ -48,9 +49,8 @@ namespace Data.Repositories
             return loreEntry;
         }
 
-        public LoreEntry Update(LoreEntry loreEntry, int id)
+        public LoreEntry Update(LoreEntry loreEntry, LoreEntry updatedLoreEntry)
         {
-            LoreEntry updatedLoreEntry = GetById(id);
 
             updatedLoreEntry.Title = loreEntry.Title;
             updatedLoreEntry.Content = loreEntry.Content;
