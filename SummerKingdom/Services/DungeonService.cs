@@ -1,4 +1,6 @@
-﻿using Data.Models;
+﻿using Common;
+using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
 
@@ -13,12 +15,21 @@ namespace Services
         }
         public Dungeon Create(Dungeon dungeon, Adventure adventure, User user)
         {
+            if (user.UserType == UserType.Player)
+            {
+                throw new UnauthorizedOperationException(Constants.NotDMOrAdminErrorMessage);
+            }
             return this.dungeonRepository.Create(dungeon, adventure);
         }
 
         public Dungeon Delete(int id, User user)
         {
-            return this.dungeonRepository.Delete(id);
+            Dungeon dungeonToDelete = dungeonRepository.GetById(id);
+            if (user.UserType != UserType.Admin && dungeonToDelete.Adventure.Module.Creator != user)
+            {
+                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+            }
+            return this.dungeonRepository.Delete(dungeonToDelete);
         }
 
         public List<Dungeon> GetAll()
@@ -33,7 +44,12 @@ namespace Services
 
         public Dungeon Update(Dungeon dungeon, int id, User user)
         {
-            return this.dungeonRepository.Update(dungeon, id);   
+            Dungeon updatedDungeon = dungeonRepository.GetById(id);
+            if (user.UserType != UserType.Admin && updatedDungeon.Adventure.Module.Creator != user)
+            {
+                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+            }
+            return this.dungeonRepository.Update(dungeon, updatedDungeon);   
         }
     }
 }

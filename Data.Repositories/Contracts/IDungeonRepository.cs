@@ -6,9 +6,9 @@ namespace Data.Repositories.Contracts
     {
         public Dungeon Create(Dungeon dungeon, Adventure adventure);
         
-        public Dungeon Update(Dungeon dungeon, int id);
+        public Dungeon Update(Dungeon dungeon, Dungeon updatedDungeon);
 
-        public Dungeon Delete(int id);
+        public Dungeon Delete(Dungeon dungeonToDelete);
 
         public Dungeon GetById(int id);
 

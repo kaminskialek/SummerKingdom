@@ -45,6 +45,7 @@ namespace Data.Repositories
         {
             Adventure adventure = adventureContext.Adventures
                 .Include(a => a.Module)
+                .ThenInclude(m => m.Creator)
                 .FirstOrDefault(adventure => adventure.Id == id && adventure.DeletedOn.HasValue == false) ?? 
                 throw new EntityNotFoundException(string.Format(adventureNotFoundErrorMessage, id));
 

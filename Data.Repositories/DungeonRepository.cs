@@ -27,9 +27,8 @@ namespace Data.Repositories
             return dungeon;
         }
 
-        public Dungeon Delete(int id)
+        public Dungeon Delete(Dungeon dungeonToDelete)
         {
-            Dungeon dungeonToDelete = GetById(id);
 
             dungeonToDelete.DeletedOn = DateTime.Now;
 
@@ -48,15 +47,15 @@ namespace Data.Repositories
             Dungeon dungeon = dungeonContext.Dungeons
                 .Include(d => d.Adventure)
                 .ThenInclude(a => a.Module)
+                .ThenInclude(m => m.Creator)
                 .FirstOrDefault(d => d.Id == id && d.DeletedOn.HasValue == false)
                 ?? throw new EntityNotFoundException(string.Format(dungeonNotFoundErrorMessage, id));
 
             return dungeon;
         }
 
-        public Dungeon Update(Dungeon dungeon, int id)
+        public Dungeon Update(Dungeon dungeon, Dungeon updatedDungeon)
         {
-            Dungeon updatedDungeon = GetById(id);
 
             updatedDungeon.Title = dungeon.Title;
             updatedDungeon.Encounters = dungeon.Encounters;

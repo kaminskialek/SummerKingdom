@@ -18,7 +18,7 @@ namespace Services
         {
             if (user.UserType == UserType.Player)
             {
-                throw new UnauthorizedOperationException(Constants.UnauthorizedOperationErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotDMOrAdminErrorMessage);
             }
             return this.adventureRepository.Create(adventure, module);
         }
