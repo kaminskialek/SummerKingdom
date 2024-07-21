@@ -44,7 +44,7 @@ namespace Services
         {
             if (user.UserType != UserType.Admin)
             {
-                throw new UnauthorizedOperationException("Only an Admin may update factions.");
+                throw new UnauthorizedOperationException("Only an Admin may modify factions.");
             }
             return this.factionRepository.Update(faction, id);
         }

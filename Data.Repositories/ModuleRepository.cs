@@ -13,8 +13,10 @@ namespace Data.Repositories
         {
             this.moduleContext = context;
         }
-        public Module Create(Module module)
+        public Module Create(Module module, User user)
         {
+            module.Creator = user;
+
             moduleContext.Modules.Add(module);
 
             moduleContext.SaveChanges();

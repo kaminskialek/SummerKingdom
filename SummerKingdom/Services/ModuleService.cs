@@ -1,4 +1,6 @@
-﻿using Data.Models;
+﻿using Common;
+using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
 
@@ -11,13 +13,21 @@ namespace Services
         {
             this.moduleRepository = moduleRepository;
         }
-        public Module Create(Module module)
+        public Module Create(Module module, User user)
         {
-            return this.moduleRepository.Create(module);
+            if (user.UserType == UserType.Player) 
+            {
+                throw new UnauthorizedOperationException(Constants.NotDMOrAdminErrorMessage);
+            }
+            return this.moduleRepository.Create(module, user);
         }
 
-        public Module Delete(int id)
+        public Module Delete(int id, User user)
         {
+            if(user.UserType != UserType.Admin && !user.CreatedModules.Any(m => m.Id == id))
+            {
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
+            }
             return this.moduleRepository.Delete(id);
         }
 
@@ -31,8 +41,12 @@ namespace Services
             return this.moduleRepository.GetById(id);
         }
 
-        public Module Update(Module module, int id)
+        public Module Update(Module module, int id, User user)
         {
+            if (user.UserType != UserType.Admin && !user.CreatedModules.Any(m => m.Id == id))
+            {
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
+            }
             return this.moduleRepository.Update(module, id);
         }
     }

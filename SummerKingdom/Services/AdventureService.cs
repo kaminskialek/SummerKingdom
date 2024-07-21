@@ -28,7 +28,7 @@ namespace Services
             Adventure adventureToDelete = adventureRepository.GetById(id);
             if(user.UserType != UserType.Admin && adventureToDelete.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
             }
             return this.adventureRepository.Delete(adventureToDelete);
         }
@@ -48,7 +48,7 @@ namespace Services
             Adventure updatedAdventure = adventureRepository.GetById(id);
             if(user.UserType != UserType.Admin && updatedAdventure.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
             }
             return this.adventureRepository.Update(adventure, updatedAdventure);
         }

@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
 
@@ -13,16 +14,25 @@ namespace Services
         }
         public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter, User user)
         {
-            return characterRepository.CreateNonPlayerCharacter(character, nonPlayerCharacter);
+            return characterRepository.CreateNonPlayerCharacter(character, nonPlayerCharacter, user);
         }
 
         public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter, User user)
         {
-            return characterRepository.CreatePlayerCharacter(character, playerCharacter);   
+            if (user.UserType != UserType.Player)
+            {
+                throw new UnauthorizedOperationException("Only a player may create his or her player character.");
+            }
+            return characterRepository.CreatePlayerCharacter(character, playerCharacter, user);   
         }
 
         public Character Delete(int id, User user)
         {
+            if(user.UserType != UserType.Admin && !user.CreatedNonPlayerCharacters.Any(c => c.Id == id)
+                && !user.Characters.Any(c => c.Id == id))
+            {
+                throw new UnauthorizedAccessException("Only an admin or the character's creator may delete it.");
+            }
             return characterRepository.Delete(id);
         }
 
@@ -49,12 +59,21 @@ namespace Services
         public NonPlayerCharacter UpdateNonPlayerCharacter
             (int id, Character character, NonPlayerCharacter nonPlayerCharacter, User user)
         {
+            if (user.UserType != UserType.Admin && !user.CreatedNonPlayerCharacters.Any(c => c.Id == id))
+            {
+                throw new UnauthorizedAccessException("Only an admin or the NPC's creator may modify it.");
+            }
             return characterRepository.UpdateNonPlayerCharacter(id, character, nonPlayerCharacter);
         }
 
         public PlayerCharacter UpdatePlayerCharacter
             (int id, Character character, PlayerCharacter playerCharacter, User user)
         {
+            if (user.UserType != UserType.Admin && !user.CreatedNonPlayerCharacters.Any(c => c.Id == id)
+                && !user.Characters.Any(c => c.Id == id))
+            {
+                throw new UnauthorizedAccessException("Only an admin or the character's owner may modify it.");
+            }
             return characterRepository.UpdatePlayerCharacter(id, character, playerCharacter);
         }
     }

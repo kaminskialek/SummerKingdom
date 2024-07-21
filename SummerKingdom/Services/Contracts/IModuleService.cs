@@ -8,10 +8,10 @@ namespace Services.Contracts
 
         public Module GetAll();
 
-        public Module Create(Module module);
+        public Module Create(Module module, User user);
 
-        public Module Update(Module module, int id);
+        public Module Update(Module module, int id, User user);
 
-        public Module Delete(int id);
+        public Module Delete(int id, User user);
     }
 }

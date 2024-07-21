@@ -27,7 +27,7 @@ namespace Services
             Dungeon dungeonToDelete = dungeonRepository.GetById(id);
             if (user.UserType != UserType.Admin && dungeonToDelete.Adventure.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
             }
             return this.dungeonRepository.Delete(dungeonToDelete);
         }
@@ -47,7 +47,7 @@ namespace Services
             Dungeon updatedDungeon = dungeonRepository.GetById(id);
             if (user.UserType != UserType.Admin && updatedDungeon.Adventure.Module.Creator != user)
             {
-                throw new UnauthorizedOperationException(Constants.NotCreatorErrorMessage);
+                throw new UnauthorizedOperationException(Constants.NotCreatorOrAdminErrorMessage);
             }
             return this.dungeonRepository.Update(dungeon, updatedDungeon);   
         }

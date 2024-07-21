@@ -9,7 +9,7 @@ namespace Data.Repositories.Contracts
 
         public Module GetAll();
 
-        public Module Create(Module module);
+        public Module Create(Module module, User user);
 
         public Module Update(Module module, int id);
 

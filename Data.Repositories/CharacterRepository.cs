@@ -80,8 +80,10 @@ namespace Data.Repositories
         }
 
 
-        public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter)
+        public NonPlayerCharacter CreateNonPlayerCharacter(Character character, NonPlayerCharacter nonPlayerCharacter, User user)
         {
+            nonPlayerCharacter.Creator = user;
+
             characterContext.Characters.Add(character);
 
             nonPlayerCharacter.Id = character.Id;
@@ -96,8 +98,10 @@ namespace Data.Repositories
 
         }
 
-        public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter)
+        public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter, User user)
         {
+            playerCharacter.Owner = user;
+
             characterContext.Characters.Add(character);
 
             playerCharacter.Id = character.Id;
