@@ -16,6 +16,6 @@ namespace Services.Contracts
 
         public User Update(int id, User userToUpdate);
 
-        public User Delete(int id);
+        public User Delete(int id, User user);
     }
 }

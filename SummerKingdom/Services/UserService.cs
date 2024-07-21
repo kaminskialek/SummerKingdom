@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 
 using Services.Contracts;
@@ -18,8 +19,12 @@ namespace Services
             return this.userRepository.Create(user);
         }
 
-        public User Delete(int id)
+        public User Delete(int id, User user)
         {
+            if (user.UserType != UserType.Admin)
+            {
+                throw new UnauthorizedOperationException("Only an admin may delete users.");
+            }
             return this.userRepository.Delete(id);
         }
 
@@ -43,9 +48,13 @@ namespace Services
             return this.userRepository.GetByUserName(username);
         }
 
-        public User Update(int id, User userToUpdate)
+        public User Update(int id, User user)
         {
-            return this.userRepository.Update(id, userToUpdate);
+            if (user.Id != id)
+            {
+                throw new UnauthorizedOperationException("You may not modify another user's account.");
+            }
+            return this.userRepository.Update(id, user);
         }
     }
 }

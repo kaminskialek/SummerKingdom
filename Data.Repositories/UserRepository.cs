@@ -65,14 +65,14 @@ namespace Data.Repositories
             return user;
         }
 
-        public User Update(int id, User userToUpdate)
+        public User Update(int id, User user)
         {
             User updatedUser = GetById(id);
 
-            updatedUser.FirstName = userToUpdate.FirstName;
-            updatedUser.LastName = userToUpdate.LastName;
-            updatedUser.Email = userToUpdate.Email;
-            updatedUser.Password = userToUpdate.Password;
+            updatedUser.FirstName = user.FirstName;
+            updatedUser.LastName = user.LastName;
+            updatedUser.Email = user.Email;
+            updatedUser.Password = user.Password;
 
             userContext.SaveChanges();
 
