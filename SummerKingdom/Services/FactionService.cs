@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Common.Exceptions;
+using Data.Models;
 using Data.Repositories.Contracts;
 using Services.Contracts;
 
@@ -11,13 +12,21 @@ namespace Services
         {
             this.factionRepository = factionRepository;
         }
-        public Faction Create(Faction faction)
+        public Faction Create(Faction faction, User user)
         {
+            if (user.UserType != UserType.Admin)
+            {
+                throw new UnauthorizedOperationException("Only an Admin may add new factions to the world.");
+            }
             return this.factionRepository.Create(faction);
         }
 
-        public Faction Delete(int id)
+        public Faction Delete(int id, User user)
         {
+            if(user.UserType != UserType.Admin)
+            {
+                throw new UnauthorizedOperationException("Only an Admin may delete factions.");
+            }
             return this.factionRepository.Delete(id);
         }
 
@@ -31,8 +40,12 @@ namespace Services
             return this.factionRepository.GetById(id);
         }
 
-        public Faction Update(Faction faction, int id)
+        public Faction Update(Faction faction, int id, User user)
         {
+            if (user.UserType != UserType.Admin)
+            {
+                throw new UnauthorizedOperationException("Only an Admin may update factions.");
+            }
             return this.factionRepository.Update(faction, id);
         }
     }
