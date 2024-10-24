@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 		{33EE1006-8832-4FA4-A692-7BBB0C2FA3DB} = {33EE1006-8832-4FA4-A692-7BBB0C2FA3DB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPIControllers", "APIControllers\RestAPIControllers.csproj", "{689B66C1-D3E5-4ED7-82CC-D496F59E7960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPIControllers", "APIControllers\RestAPIControllers.csproj", "{689B66C1-D3E5-4ED7-82CC-D496F59E7960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

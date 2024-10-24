@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Fantasy Tabletop</title>
+
+    <style>
+        /* Navbar with rustic stone wall look */
+        .navbar {
+            background-color: #696969; /* Granite or stone-like grey */
+            background-image: url('/images/stone_texture.jpg'); /* Add a rustic stone wall image */
+            border-bottom: 2px solid #4f4f4f;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+            .nav-buttons li {
+                display: inline;
+            }
+
+            .nav-buttons a {
+                color: #fff; /* White text to contrast with the stone background */
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .nav-buttons a:hover {
+                    background-color: #3e3e3e; /* Slightly darker on hover */
+                }
+
+        /* Ivy background */
+        body {
+            background-image: url('/images/ivy_background.jpg'); /* Add a background of interlocking vines */
+            background-size: cover;
+            background-attachment: fixed; /* Keeps the background fixed in place */
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            color: #fff; /* White text to contrast with background */
+            font-family: 'Verdana', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow to ensure readability */
+        }
+
+        /* Remove any distinct box around the content */
+        .content-container {
+            padding: 0;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="nav-buttons">
+            <li><a href="~/">Home</a></li>
+            <li><a href="~/About">About</a></li>
+            <li><a href="~/Modules">Modules</a></li>
+            <li><a href="~/Characters">Characters</a></li>
+            <li><a href="~/Lore">Lore</a></li>
+        </ul>
+    </div>
+
+    <div class="content-container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Fantasy Tabletop</p>
+    </footer>
+</body>
+</html>

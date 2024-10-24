@@ -19,10 +19,10 @@ namespace Services
 
         public PlayerCharacter CreatePlayerCharacter(Character character, PlayerCharacter playerCharacter, User user)
         {
-            if (user.UserType != UserType.Player)
-            {
-                throw new UnauthorizedOperationException("Only a player may create his or her player character.");
-            }
+            //if (user.UserType != UserType.Player)
+            //{
+            //    throw new UnauthorizedOperationException("Only a player may create his or her player character.");
+            //}
             return characterRepository.CreatePlayerCharacter(character, playerCharacter, user);   
         }
 
