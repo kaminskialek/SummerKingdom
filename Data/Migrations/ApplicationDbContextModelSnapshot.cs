@@ -470,7 +470,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 3,
-                            Email = "stefan.neschev@gmai.com",
+                            Email = "stefan.neschev@gmail.com",
                             FirstName = "Stefan",
                             LastName = "Neshev",
                             Password = "donnelkoza",

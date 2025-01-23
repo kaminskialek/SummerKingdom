@@ -103,7 +103,7 @@ namespace Data
                 new User
                 {
                     Id = 3,
-                    Email = "stefan.neschev@gmai.com",
+                    Email = "stefan.neschev@gmail.com",
                     Password = "donnelkoza",
                     FirstName = "Stefan",
                     LastName = "Neshev",
