@@ -9,39 +9,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title - Fantasy Tabletop</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
     <style>
         /* Centering the text in the middle of the page */
-        .creation-poem {
+        .creation-poem-container {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh; /* Full height of the viewport */
             text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #f9bc30;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
         }
+
+
+
+        .creation-poem {
+            position: relative;
+            font-size: 18px;
+            font-style: italic;
+            color: #ffffff;
+            font-family: 'Uncial Antiqua', cursive;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(243, 207, 25, 0.8), 0 0 30px rgba(243, 207, 25, 0.6);
+        }
+
+            .creation-poem p {
+                margin: 0;
+                white-space: pre-line; /* Preserve line breaks in the poem */
+            }
     </style>
 </head>
 <body>
-    <div class="creation-poem">
-        <p>
-            First comes always Everglow
-            Hidden pulse from deep and low
-            Second comes Foundation Stone
-            This one to be left alone!
-            Wolfrose lively, Wolfrose calm
-            Shifts and turns in pouch or palm
-            Many covet Summercrown
-            Wisdom’s gift of high renown
-            Living Rainbow – fancy’s roam,
-            Fickle as the ocean’s foam
-            Sin of the Eternal Book
-            Seek it if you dare to look
-            Last of Ages sees the Bow
-            May it ever Truepath show
-        </p>
+    <div class="creation-poem-container">
+        <div class="creation-poem-overlay"></div>
+        <div class="creation-poem">
+            <p>
+                First comes always Everglow
+                Hidden pulse from deep and low
+                Second comes Foundation Stone
+                This one to be left alone!
+                Wolfrose lively, Wolfrose calm
+                Shifts and turns in pouch or palm
+                Many covet Summercrown
+                Wisdom’s gift of high renown
+                Living Rainbow – fancy’s roam,
+                Fickle as the ocean’s foam
+                Sin of the Eternal Book
+                Seek it if you dare to look
+                Last of Ages sees the Bow
+                May it ever Truepath show
+            </p>
+        </div>
     </div>
 </body>
 </html>
