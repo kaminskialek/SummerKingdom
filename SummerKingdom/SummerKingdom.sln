@@ -24,6 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPIControllers", "APIControllers\RestAPIControllers.csproj", "{689B66C1-D3E5-4ED7-82CC-D496F59E7960}"
+	ProjectSection(ProjectDependencies) = postProject
+		{888B866A-0EC5-40C5-B9B9-236B759FE309} = {888B866A-0EC5-40C5-B9B9-236B759FE309}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
